@@ -31,6 +31,7 @@ body{padding-bottom:80px}
 @keyframes glow{0%,100%{box-shadow:0 0 15px rgba(244,114,182,.3)}50%{box-shadow:0 0 30px rgba(244,114,182,.6)}}
 @keyframes confFall{0%{transform:translateY(-10vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @keyframes newPulse{0%{box-shadow:0 0 0 0 rgba(124,107,196,.4)}70%{box-shadow:0 0 0 12px rgba(124,107,196,0)}100%{box-shadow:0 0 0 0 rgba(124,107,196,0)}}
+@keyframes unlockGlow{0%{opacity:0;transform:scale(.7)}50%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
 .hxl{font-family:var(--hd);font-size:2.2rem;font-weight:300;line-height:1.15}
 .hlg{font-family:var(--hd);font-size:1.6rem;font-weight:400;line-height:1.2}
 .hmd{font-family:var(--hd);font-size:1.25rem;font-weight:400}
@@ -41,19 +42,18 @@ body{padding-bottom:80px}
 .btn-p{background:linear-gradient(135deg,var(--pri),#5b3a9e);color:#fff;box-shadow:0 4px 20px rgba(124,107,196,.3)}
 .btn-p:active{transform:scale(.97)}
 .btn-s{background:var(--sf);color:var(--t);border:1px solid var(--bd)}
+.btn-rose{background:linear-gradient(135deg,var(--rose),#be185d);color:#fff;box-shadow:0 4px 15px rgba(244,114,182,.3)}
 .chip{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:var(--sf);border-radius:16px;font-size:.7rem;color:var(--t2)}
 .flex-b{display:flex;justify-content:space-between;align-items:center}
 .mb16{margin-bottom:16px}.mt16{margin-top:16px}
 .divider{height:1px;background:var(--sf2);margin:20px 0}
 .tag-new{display:inline-block;background:var(--pri);color:#fff;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:8px;text-transform:uppercase;animation:newPulse 2s infinite}
-.tag-day{display:inline-block;background:var(--cyan);color:#000;font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:8px;text-transform:uppercase}
+.tag-day{display:inline-block;background:rgba(62,207,207,.15);color:var(--cyan);font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:8px}
 
 /* NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:none;justify-content:space-around;align-items:center;padding:10px 4px 26px;background:linear-gradient(to top,rgba(8,8,21,.98),rgba(8,8,21,.88));backdrop-filter:blur(16px);border-top:1px solid var(--bd)}
-.ni{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:var(--t3);font-family:var(--sn);font-size:.6rem;font-weight:500;cursor:pointer;transition:all .25s ease;padding:4px 10px;position:relative}
-.ni.on{color:var(--pri-l)}
-.ni svg{width:22px;height:22px}
-.ni.on svg{filter:drop-shadow(0 0 6px rgba(165,148,249,.5))}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:var(--t3);font-family:var(--sn);font-size:.6rem;font-weight:500;cursor:pointer;transition:all .25s;padding:4px 10px;position:relative}
+.ni.on{color:var(--pri-l)}.ni svg{width:22px;height:22px}.ni.on svg{filter:drop-shadow(0 0 6px rgba(165,148,249,.5))}
 .ni-badge{position:absolute;top:-2px;right:2px;width:8px;height:8px;border-radius:50%;background:var(--rose);border:2px solid var(--bg)}
 
 /* ONBOARDING */
@@ -72,12 +72,10 @@ body{padding-bottom:80px}
 .timer-wrap{margin:20px 0;text-align:center}
 .timer-ring{position:relative;width:200px;height:200px;margin:0 auto 12px}
 .timer-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring-bg{fill:none;stroke:var(--sf2);stroke-width:5}
-.ring-fg{fill:none;stroke:url(#tg);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.ring-bg{fill:none;stroke:var(--sf2);stroke-width:5}.ring-fg{fill:none;stroke:url(#tg);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1s ease}
 .t-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .t-num{font-family:var(--hd);font-size:2.8rem;font-weight:300;background:linear-gradient(135deg,var(--pri-xl),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.t-lbl{font-size:.75rem;color:var(--t3)}
-.t-sub{font-size:.8rem;color:var(--t2);margin-top:3px}
+.t-lbl{font-size:.75rem;color:var(--t3)}.t-sub{font-size:.8rem;color:var(--t2);margin-top:3px}
 
 /* SOS */
 .sos-float{position:fixed;bottom:95px;right:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#be185d);border:none;color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 20px rgba(244,114,182,.4);display:none;align-items:center;justify-content:center;animation:glow 3s ease-in-out infinite}
@@ -88,7 +86,7 @@ body{padding-bottom:80px}
 .quote-t{font-family:var(--hd);font-size:1.15rem;font-style:italic;font-weight:300;line-height:1.5;margin-bottom:10px}
 .quote-a{font-size:.75rem;color:var(--pri-l)}
 
-/* DAILY CONTENT CARD */
+/* DAILY CARD */
 .daily-card{background:linear-gradient(135deg,rgba(124,107,196,.12),rgba(62,207,207,.06));border:1px solid var(--pri);border-radius:var(--r);padding:22px;margin:14px 0;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
 .daily-card:active{transform:scale(.98)}
 .daily-card .tag-new{position:absolute;top:14px;right:14px}
@@ -96,6 +94,12 @@ body{padding-bottom:80px}
 .dc-cat{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
 .dc-title{font-family:var(--hd);font-size:1.15rem;margin-bottom:6px}
 .dc-prev{font-size:.78rem;color:var(--t3);line-height:1.5}
+
+/* RITUAL UNLOCK CEREMONY */
+.unlock-overlay{display:none;position:fixed;inset:0;z-index:250;background:rgba(8,8,21,.97);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;animation:fi .5s ease}
+.unlock-overlay.open{display:flex}
+.unlock-emoji-big{font-size:5rem;margin-bottom:20px;animation:unlockGlow 1s ease both}
+.unlock-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 
 /* RITUALS */
 .unlock-card{background:linear-gradient(135deg,rgba(124,107,196,.18),rgba(62,207,207,.08));border:2px solid var(--pri);border-radius:var(--r);padding:24px;margin:14px 0;text-align:center;animation:si .5s ease;cursor:pointer}
@@ -111,7 +115,8 @@ body{padding-bottom:80px}
 /* HEALTH SCROLL */
 .h-scroll{display:flex;gap:11px;overflow-x:auto;padding:3px 0 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
 .h-scroll::-webkit-scrollbar{display:none}
-.h-card{flex:0 0 240px;scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px}
+.h-card{flex:0 0 240px;scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px;cursor:pointer;transition:all .25s}
+.h-card:active{transform:scale(.97)}
 .h-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:1.2rem}
 .h-title{font-family:var(--hd);font-size:1rem;font-weight:500;margin-bottom:4px}
 .h-desc{font-size:.75rem;color:var(--t3);line-height:1.5;margin-bottom:10px}
@@ -119,7 +124,7 @@ body{padding-bottom:80px}
 .h-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
 .h-meta{display:flex;justify-content:space-between;margin-top:5px;font-size:.65rem;color:var(--t3)}
 
-/* JOURNEY */
+/* JOURNEY, PROGRESS, LEARN, EXERCISE, MODALS - same as before */
 .j-path{position:relative;padding:16px 0 16px 36px}
 .j-line{position:absolute;left:17px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pri),var(--cyan),var(--green));opacity:.25}
 .j-node{position:relative;margin-bottom:22px;animation:su .5s ease both}
@@ -128,13 +133,10 @@ body{padding-bottom:80px}
 .j-node.now .j-dot{background:var(--pri);border-color:var(--pri-l);box-shadow:0 0 10px rgba(124,107,196,.5);animation:pulse 2s infinite}
 .j-node.lock .j-dot{border-color:var(--sf2)}
 .j-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px;transition:all .25s}
-.j-node.lock .j-card{opacity:.35}
-.j-node.now .j-card{border-color:var(--pri);box-shadow:0 0 16px rgba(124,107,196,.12)}
+.j-node.lock .j-card{opacity:.35}.j-node.now .j-card{border-color:var(--pri);box-shadow:0 0 16px rgba(124,107,196,.12)}
 .j-wk{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pri-l);margin-bottom:5px}
 .j-title{font-family:var(--hd);font-size:1.1rem;margin-bottom:5px}
 .j-desc{font-size:.78rem;color:var(--t3);line-height:1.5}
-
-/* PROGRESS */
 .st-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
 .st-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px;text-align:center}
 .st-num{font-family:var(--hd);font-size:1.8rem;font-weight:300;background:linear-gradient(135deg,var(--pri-xl),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -142,16 +144,15 @@ body{padding-bottom:80px}
 .cal{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px;margin:14px 0}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
 .cal-dl{font-size:.6rem;color:var(--t3);text-align:center;padding:3px 0}
-.cal-d{aspect-ratio:1;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--t3);background:var(--sf);transition:all .25s}
+.cal-d{aspect-ratio:1;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--t3);background:var(--sf)}
 .cal-d.f{background:var(--pri);color:#fff}.cal-d.today{border:2px solid var(--pri-l);color:var(--pri-l)}.cal-d.e{background:transparent}
-.rec-item{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.rec-item{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:all .25s}
+.rec-item:active{transform:scale(.98)}
 .rec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .rec-info{flex:1}.rec-title{font-weight:600;font-size:.85rem;margin-bottom:3px}.rec-time{font-size:.7rem;color:var(--pri-l);margin-bottom:5px}.rec-desc{font-size:.75rem;color:var(--t3);line-height:1.5}
 .rec-bar{width:100%;height:4px;background:var(--sf2);border-radius:2px;margin-top:8px;overflow:hidden}
 .rec-fill{height:100%;border-radius:2px;transition:width 1.2s ease}
 .rec-item.ach{border-color:rgba(52,211,153,.25)}.rec-item.ach .rec-title{color:var(--green)}
-
-/* LEARN */
 .rd-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:22px;margin-bottom:12px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
 .rd-card.locked{opacity:.3;pointer-events:none}
 .rd-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pri),var(--cyan));opacity:0;transition:opacity .25s}
@@ -160,8 +161,6 @@ body{padding-bottom:80px}
 .rd-title{font-family:var(--hd);font-size:1.1rem;margin-bottom:6px}
 .rd-prev{font-size:.78rem;color:var(--t3);line-height:1.5}
 .rd-meta{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:.65rem;color:var(--t3)}
-
-/* EXERCISE */
 .ex-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;margin-bottom:8px;cursor:pointer;transition:all .25s}
 .ex-card.exp{border-color:var(--pri)}
 .ex-head{display:flex;align-items:center;gap:12px}
@@ -170,15 +169,12 @@ body{padding-bottom:80px}
 .ex-det{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--bd);font-size:.82rem;color:var(--t2);line-height:1.7}
 .ex-card.exp .ex-det{display:block}
 .ex-sets{display:inline-block;padding:3px 10px;background:var(--pri);border-radius:16px;font-size:.65rem;font-weight:600;color:#fff;margin-top:8px}
-
-/* MODALS */
 .modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(8,8,21,.96);backdrop-filter:blur(20px);overflow-y:auto;padding:16px;animation:fi .3s ease}
 .modal.open{display:block}
 .m-close{position:sticky;top:0;display:flex;justify-content:flex-end;padding:6px 0 12px;z-index:10}
 .m-close button{background:var(--sf2);border:1px solid var(--bd);color:var(--t);width:38px;height:38px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .m-body{max-width:560px;margin:0 auto;padding-bottom:32px}
 .m-body .body{margin-bottom:14px}
-
 .sos-timer-big{font-family:var(--hd);font-size:4rem;font-weight:300;color:var(--rose);margin:20px 0 8px}
 .sos-sub{font-size:.85rem;color:var(--t2);margin-bottom:24px}
 .sos-opt{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .25s;text-align:left}
@@ -191,11 +187,24 @@ body{padding-bottom:80px}
 .br-inst{font-family:var(--hd);font-size:1.4rem;color:var(--pri-l)}
 .br-timer{font-size:2.2rem;font-family:var(--hd);font-weight:300;color:var(--t2);margin-top:16px}
 .confetti{position:fixed;z-index:300;pointer-events:none}
+
+/* RELAPSE CARD */
+.relapse-card{background:linear-gradient(135deg,rgba(244,114,182,.1),rgba(239,68,68,.05));border:1px solid rgba(244,114,182,.2);border-radius:var(--r);padding:20px;margin:14px 0;text-align:center}
 </style>
 </head>
 <body>
 <div class="amb"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
+<!-- UNLOCK CEREMONY -->
+<div class="unlock-overlay" id="unlockCeremony">
+  <div class="unlock-particles" id="unlockParticles"></div>
+  <div class="unlock-emoji-big" id="unlockEmoji"></div>
+  <h2 class="hlg" id="unlockTitle" style="margin-bottom:8px"></h2>
+  <p class="body" id="unlockSub" style="margin-bottom:24px;max-width:300px"></p>
+  <button class="btn btn-p" style="max-width:260px" onclick="acceptRitualUnlock()">Acepto este ritual</button>
+</div>
+
+<!-- ONBOARDING -->
 <div class="scr on" id="onb">
   <div class="ob-step on" data-s="1">
     <svg width="100" height="100" viewBox="0 0 120 120" style="animation:breatheA 4s ease-in-out infinite"><defs><linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a594f9"/><stop offset="100%" stop-color="#3ecfcf"/></linearGradient></defs><g transform="translate(60,60)"><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".75"/><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".65" transform="rotate(60)"/><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".55" transform="rotate(120)"/><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".75" transform="rotate(180)"/><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".65" transform="rotate(240)"/><ellipse cx="0" cy="-24" rx="11" ry="24" fill="url(#pg)" opacity=".55" transform="rotate(300)"/><circle cx="0" cy="0" r="9" fill="var(--pri-xl)"/></g></svg>
@@ -205,238 +214,246 @@ body{padding-bottom:80px}
     <button class="btn btn-p" onclick="obNext()">Comenzar mi viaje</button>
   </div>
   <div class="ob-step" data-s="2">
-    <h1 class="hxl">Tu dia uno</h1>
-    <p class="body">Cuando inicia tu transformacion?</p>
+    <h1 class="hxl">Tu dia uno</h1><p class="body">Cuando inicia tu transformacion?</p>
     <div class="inp-w"><input type="date" id="inpDate"></div>
     <div class="dots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
     <button class="btn btn-p" onclick="obNext()">Confirmar</button>
   </div>
   <div class="ob-step" data-s="3">
-    <h1 class="hxl">Como te llamo?</h1>
-    <p class="body">Para acompanarte de manera personal.</p>
+    <h1 class="hxl">Como te llamo?</h1><p class="body">Para acompanarte de manera personal.</p>
     <div class="inp-w"><input type="text" id="inpName" placeholder="Tu nombre" autocomplete="off"></div>
     <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
     <button class="btn btn-p" onclick="obDone()">Vamos!</button>
   </div>
 </div>
 
+<!-- HOME -->
 <div class="scr" id="home">
   <div style="text-align:center;padding:14px 0 6px"><p class="body" id="greet"></p><h1 class="hlg" id="hName" style="margin-top:3px"></h1></div>
   <div class="timer-wrap"><div class="timer-ring"><svg viewBox="0 0 200 200"><defs><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a594f9"/><stop offset="50%" stop-color="#3ecfcf"/><stop offset="100%" stop-color="#34d399"/></linearGradient></defs><circle class="ring-bg" cx="100" cy="100" r="90"/><circle class="ring-fg" id="tProg" cx="100" cy="100" r="90" stroke-dasharray="565" stroke-dashoffset="565"/></svg><div class="t-center"><div class="t-num" id="tDays">0</div><div class="t-lbl" id="tLbl">dias libres</div><div class="t-sub" id="tSub"></div></div></div></div>
   <div class="quote" id="dQuote"></div>
-  <!-- DAILY CONTENT: unlocks by day -->
   <div id="dailyContent"></div>
   <div class="mb16"><div class="flex-b mb16"><span class="lbl">Tu ritual de hoy</span><span class="chip" id="rProg">0/0</span></div><div id="rList"></div></div>
   <div class="mb16"><div class="lbl mb16" style="padding-left:3px">Tu cuerpo se recupera</div><div class="h-scroll" id="hCards"></div></div>
+  <!-- RELAPSE BUTTON -->
+  <div class="relapse-card"><p class="body" style="margin-bottom:10px">Si tuviste un momento dificil, no pasa nada. Puedes reiniciar tu contador sin perder tus rituales ni lecturas.</p><button class="btn btn-s" onclick="showRelapse()" style="max-width:220px;margin:0 auto">Reiniciar mi contador</button></div>
 </div>
 
-<div class="modal" id="sosModal">
-  <div class="m-close"><button onclick="closeSos()">&#10005;</button></div>
-  <div class="m-body" style="text-align:center">
-    <p class="lbl" style="color:var(--rose)">MODO ANTOJO</p>
-    <h2 class="hlg" style="margin-top:8px">Esto va a pasar</h2>
-    <div class="sos-timer-big" id="sosTimer">15:00</div>
-    <p class="sos-sub">Los antojos duran maximo 15-20 minutos. Solo tienes que sobrevivir este momento.</p>
-    <button class="btn btn-p" id="sosStartBtn" onclick="startSosTimer()">Iniciar cuenta regresiva</button>
-    <div style="margin-top:24px">
-      <div class="sos-opt" onclick="openBreathing()"><div class="sos-opt-ico">&#x1FAE7;</div><div><div class="sos-opt-title">Respiracion 4-7-8</div><div class="sos-opt-desc">Calma tu sistema nervioso ahora</div></div></div>
-      <div class="sos-opt" onclick="showSA('sq')"><div class="sos-opt-ico">&#x1F4AA;</div><div><div class="sos-opt-title">10 sentadillas AHORA</div><div class="sos-opt-desc">Mueve la energia</div></div></div>
-      <div class="sos-opt" onclick="showSA('cold')"><div class="sos-opt-ico">&#x1F6BF;</div><div><div class="sos-opt-title">Agua fria en la cara</div><div class="sos-opt-desc">Activa reflejo de inmersion</div></div></div>
-      <div class="sos-opt" onclick="showSA('call')"><div class="sos-opt-ico">&#x1F4F1;</div><div><div class="sos-opt-title">Llama a alguien</div><div class="sos-opt-desc">Solo conecta</div></div></div>
-      <div class="sos-opt" onclick="showSA('write')"><div class="sos-opt-ico">&#x1F4DD;</div><div><div class="sos-opt-title">Escribe lo que sientes</div><div class="sos-opt-desc">Sacalo de tu cabeza</div></div></div>
-    </div>
-    <div id="sosAA" style="margin-top:16px"></div>
-    <div class="card mt16" style="text-align:left"><p class="body" style="font-style:italic">"Entre el estimulo y la respuesta hay un espacio. En ese espacio esta tu poder de elegir."</p><p class="quote-a" style="margin-top:8px;text-align:right">&#8212; Viktor Frankl</p></div>
-  </div>
-</div>
-
-<div class="modal" id="brModal">
-  <div class="m-close"><button onclick="closeBr()">&#10005;</button></div>
-  <div class="br-wrap"><h2 class="hlg">Respiracion 4-7-8</h2><p class="body" style="margin-top:6px">Inhala, sosten, exhala.</p><div class="br-circle" id="brCircle"><span class="br-inst" id="brInst">Toca iniciar</span></div><div class="br-timer" id="brTimer"></div><button class="btn btn-s" onclick="startBr()" id="brBtn" style="max-width:180px">Iniciar</button></div>
-</div>
-
+<!-- All modals -->
+<div class="modal" id="sosModal"><div class="m-close"><button onclick="closeSos()">&#10005;</button></div><div class="m-body" style="text-align:center"><p class="lbl" style="color:var(--rose)">MODO ANTOJO</p><h2 class="hlg" style="margin-top:8px">Esto va a pasar</h2><div class="sos-timer-big" id="sosTimer">15:00</div><p class="sos-sub">Los antojos duran maximo 15-20 min. Solo sobrevive este momento.</p><button class="btn btn-p" id="sosStartBtn" onclick="startSosTimer()">Iniciar cuenta regresiva</button><div style="margin-top:24px"><div class="sos-opt" onclick="openBreathing()"><div class="sos-opt-ico">&#x1FAE7;</div><div><div class="sos-opt-title">Respiracion 4-7-8</div><div class="sos-opt-desc">Calma tu sistema nervioso</div></div></div><div class="sos-opt" onclick="showSA('sq')"><div class="sos-opt-ico">&#x1F4AA;</div><div><div class="sos-opt-title">10 sentadillas AHORA</div><div class="sos-opt-desc">Rompe el patron</div></div></div><div class="sos-opt" onclick="showSA('cold')"><div class="sos-opt-ico">&#x1F6BF;</div><div><div class="sos-opt-title">Agua fria en la cara</div><div class="sos-opt-desc">Reflejo de inmersion</div></div></div><div class="sos-opt" onclick="showSA('call')"><div class="sos-opt-ico">&#x1F4F1;</div><div><div class="sos-opt-title">Llama a alguien</div><div class="sos-opt-desc">Solo conecta</div></div></div><div class="sos-opt" onclick="showSA('write')"><div class="sos-opt-ico">&#x1F4DD;</div><div><div class="sos-opt-title">Escribe lo que sientes</div><div class="sos-opt-desc">Sacalo</div></div></div></div><div id="sosAA" style="margin-top:16px"></div><div class="card mt16" style="text-align:left"><p class="body" style="font-style:italic">"Entre el estimulo y la respuesta hay un espacio. En ese espacio esta tu libertad."</p><p class="quote-a" style="margin-top:8px;text-align:right">&#8212; Viktor Frankl</p></div></div></div>
+<div class="modal" id="brModal"><div class="m-close"><button onclick="closeBr()">&#10005;</button></div><div class="br-wrap"><h2 class="hlg">Respiracion 4-7-8</h2><p class="body" style="margin-top:6px">Inhala, sosten, exhala.</p><div class="br-circle" id="brCircle"><span class="br-inst" id="brInst">Toca iniciar</span></div><div class="br-timer" id="brTimer"></div><button class="btn btn-s" onclick="startBr()" id="brBtn" style="max-width:180px">Iniciar</button></div></div>
 <div class="modal" id="rdModal"><div class="m-close"><button onclick="closeRd()">&#10005;</button></div><div class="m-body" id="rdBody"></div></div>
-<div class="modal" id="riModal"><div class="m-close"><button onclick="closeRi()">&#10005;</button></div><div class="m-body" id="riBody"></div></div>
+<div class="modal" id="relModal"><div class="m-close"><button onclick="closeRel()">&#10005;</button></div><div class="m-body" style="text-align:center"><div style="font-size:3rem;margin-bottom:16px">&#x1F49C;</div><h2 class="hlg">Una recaida no borra tu progreso</h2><p class="body mt16">Cada dia que sumaste esta guardado. Tus rituales, tus lecturas, todo lo aprendido sigue contigo. Solo el contador de dias se reinicia.</p><p class="body">Esto es informacion, no fracaso. Analiza que paso, ajusta tu estrategia, y sigue adelante. Eres mas fuerte por haberlo intentado.</p><div class="divider"></div><button class="btn btn-rose" onclick="doRelapse()">Reiniciar contador</button><button class="btn btn-s mt16" onclick="closeRel()">Cancelar</button></div></div>
 
+<!-- JOURNEY -->
 <div class="scr" id="journey"><div style="text-align:center;padding:8px 0 16px"><span class="lbl">Tu camino</span><h1 class="hlg" style="margin-top:6px">12 semanas de transformacion</h1></div><div class="j-path" id="jPath"></div></div>
 
-<div class="scr" id="progress">
-  <div style="text-align:center;padding:8px 0 16px"><span class="lbl">Progreso</span><h1 class="hlg" style="margin-top:6px">Cada dia cuenta</h1></div>
-  <div class="st-grid"><div class="st-card"><div class="st-num" id="sDays">0</div><div class="st-lbl">Dias</div></div><div class="st-card"><div class="st-num" id="sStrk">0</div><div class="st-lbl">Racha</div></div><div class="st-card"><div class="st-num" id="sRit">0</div><div class="st-lbl">Rituales</div></div><div class="st-card"><div class="st-num" id="sSav">$0</div><div class="st-lbl">Ahorro</div></div></div>
-  <div class="cal"><div class="flex-b"><span class="lbl">Racha</span><span class="chip" id="calMo"></span></div><div class="cal-grid" id="calG"></div></div>
-  <div class="mt16"><span class="lbl">Recuperacion fisica</span><div id="recTL" style="margin-top:12px"></div></div>
-</div>
+<!-- PROGRESS -->
+<div class="scr" id="progress"><div style="text-align:center;padding:8px 0 16px"><span class="lbl">Progreso</span><h1 class="hlg" style="margin-top:6px">Cada dia cuenta</h1></div><div class="st-grid"><div class="st-card"><div class="st-num" id="sDays">0</div><div class="st-lbl">Dias</div></div><div class="st-card"><div class="st-num" id="sStrk">0</div><div class="st-lbl">Racha rituales</div></div><div class="st-card"><div class="st-num" id="sRit">0</div><div class="st-lbl">Rituales hechos</div></div><div class="st-card"><div class="st-num" id="sSav">$0</div><div class="st-lbl">Ahorro</div></div></div><div class="cal"><div class="flex-b"><span class="lbl">Racha</span><span class="chip" id="calMo"></span></div><div class="cal-grid" id="calG"></div></div><div class="mt16"><span class="lbl">Recuperacion fisica</span><div id="recTL" style="margin-top:12px"></div></div></div>
 
-<div class="scr" id="learn"><div style="text-align:center;padding:8px 0 16px"><span class="lbl">Aprende</span><h1 class="hlg" style="margin-top:6px">Conocimiento es poder</h1><p class="body mt16">Las lecturas se desbloquean cada dia. Regresa manana para contenido nuevo.</p></div><div id="rdList"></div></div>
+<!-- LEARN -->
+<div class="scr" id="learn"><div style="text-align:center;padding:8px 0 16px"><span class="lbl">Aprende</span><h1 class="hlg" style="margin-top:6px">Conocimiento es poder</h1><p class="body mt16">Contenido nuevo se desbloquea cada dia.</p></div><div id="rdList"></div></div>
 
-<div class="scr" id="exercise">
-  <div style="text-align:center;padding:8px 0 16px"><span class="lbl">Movimiento</span><h1 class="hlg" style="margin-top:6px">Tu cuerpo, tu aliado</h1></div>
-  <div class="card mb16"><div class="lbl mb16">Tu semana</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Lun: Natacion</span><span class="chip">Mar: Yoga</span><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Mie: Natacion</span><span class="chip" style="background:rgba(165,148,249,.12);color:var(--pri-l)">Jue: Pesas</span><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Vie: Natacion</span><span class="chip" style="background:rgba(165,148,249,.12);color:var(--pri-l)">Sab: Pesas</span><span class="chip" style="background:rgba(52,211,153,.12);color:var(--green)">Dom: Yoga/Descanso</span></div></div>
-  <div class="card mb16" style="cursor:pointer;text-align:center" onclick="openBreathing()"><div style="font-size:1.8rem;margin-bottom:6px">&#x1FAE7;</div><div class="hmd">Respiracion 4-7-8</div><p class="body" style="margin-top:3px">Calma instantanea</p></div>
-  <div class="lbl mb16" style="padding-left:3px">Pesas (Jueves y Sabado)</div>
-  <div id="exList"></div>
-</div>
+<!-- EXERCISE -->
+<div class="scr" id="exercise"><div style="text-align:center;padding:8px 0 16px"><span class="lbl">Movimiento</span><h1 class="hlg" style="margin-top:6px">Tu cuerpo, tu aliado</h1></div><div class="card mb16"><div class="lbl mb16">Tu semana</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Lun: Natacion</span><span class="chip">Mar: Yoga</span><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Mie: Natacion</span><span class="chip" style="background:rgba(165,148,249,.12);color:var(--pri-l)">Jue: Pesas</span><span class="chip" style="background:rgba(62,207,207,.12);color:var(--cyan)">Vie: Natacion</span><span class="chip" style="background:rgba(165,148,249,.12);color:var(--pri-l)">Sab: Pesas</span><span class="chip" style="background:rgba(52,211,153,.12);color:var(--green)">Dom: Yoga/Descanso</span></div></div><div class="card mb16" style="cursor:pointer;text-align:center" onclick="openBreathing()"><div style="font-size:1.8rem;margin-bottom:6px">&#x1FAE7;</div><div class="hmd">Respiracion 4-7-8</div><p class="body" style="margin-top:3px">Calma instantanea</p></div><div class="lbl mb16" style="padding-left:3px">Pesas (Jueves y Sabado)</div><div id="exList"></div></div>
 
 <button class="sos-float" id="sosBtn" onclick="openSos()">&#x1F198;</button>
-
-<nav class="bnav" id="nav">
-  <button class="ni on" data-s="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Inicio</span></button>
-  <button class="ni" data-s="journey" onclick="go('journey')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Camino</span></button>
-  <button class="ni" data-s="progress" onclick="go('progress')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M18 20V4M6 20v-4"/></svg><span>Progreso</span></button>
-  <button class="ni" data-s="learn" onclick="go('learn')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>Aprende</span></button>
-  <button class="ni" data-s="exercise" onclick="go('exercise')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="3"/><path d="M12 8v6M8 21l2-5h4l2 5M7 14h10"/></svg><span>Ejercicio</span></button>
-</nav>
+<nav class="bnav" id="nav"><button class="ni on" data-s="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Inicio</span></button><button class="ni" data-s="journey" onclick="go('journey')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Camino</span></button><button class="ni" data-s="progress" onclick="go('progress')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V10M18 20V4M6 20v-4"/></svg><span>Progreso</span></button><button class="ni" data-s="learn" onclick="go('learn')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>Aprende</span></button><button class="ni" data-s="exercise" onclick="go('exercise')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="3"/><path d="M12 8v6M8 21l2-5h4l2 5M7 14h10"/></svg><span>Ejercicio</span></button></nav>
 
 <script>
-var SK='bloom3',df={name:'',start:null,ob:false,rituals:{},unlocked:['water'],readDone:[],seenDaily:[]};
+var SK='bloom4',df={name:'',start:null,ob:false,rituals:{},unlocked:['water'],readDone:[],seenDaily:[],relapses:0,totalDaysEver:0};
 function ld(){try{var d=JSON.parse(localStorage.getItem(SK));return d?Object.assign({},df,d):Object.assign({},df)}catch(e){return Object.assign({},df)}}
 function sv(d){localStorage.setItem(SK,JSON.stringify(d))}
 var D=ld();
+var pendingUnlockId=null;
 
-/* =============================================
-   PROGRESSIVE CONTENT SYSTEM
-   Each item is tied to a specific DAY from start.
-   Ritual unlocks, readings, exercise tips, motivation
-   all drip-feed day by day.
-   ============================================= */
+// AUDIO: Web Audio API chime for unlock ceremonies
+var audioCtx=null;
+function playUnlockSound(){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    var notes=[523.25,659.25,783.99,1046.50];
+    notes.forEach(function(freq,i){
+      var osc=audioCtx.createOscillator();var gain=audioCtx.createGain();
+      osc.connect(gain);gain.connect(audioCtx.destination);
+      osc.type='sine';osc.frequency.value=freq;
+      gain.gain.setValueAtTime(0,audioCtx.currentTime+i*.15);
+      gain.gain.linearRampToValueAtTime(.15,audioCtx.currentTime+i*.15+.05);
+      gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+i*.15+.8);
+      osc.start(audioCtx.currentTime+i*.15);osc.stop(audioCtx.currentTime+i*.15+.8);
+    });
+    // Final chord
+    setTimeout(function(){
+      [523.25,659.25,783.99].forEach(function(freq){
+        var osc=audioCtx.createOscillator();var gain=audioCtx.createGain();
+        osc.connect(gain);gain.connect(audioCtx.destination);
+        osc.type='triangle';osc.frequency.value=freq;
+        gain.gain.setValueAtTime(.1,audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+1.5);
+        osc.start();osc.stop(audioCtx.currentTime+1.5);
+      });
+    },700);
+  }catch(e){}
+}
+
+function playCheckSound(){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    var osc=audioCtx.createOscillator();var gain=audioCtx.createGain();
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    osc.type='sine';osc.frequency.value=880;
+    gain.gain.setValueAtTime(.08,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.2);
+    osc.start();osc.stop(audioCtx.currentTime+.2);
+  }catch(e){}
+}
+
 var RITUALS=[
-{id:'water',name:'Vaso de agua al despertar',time:'Al despertar',emoji:'\u{1F4A7}',introTitle:'El poder del agua',introBody:'<p class="body">Tu primer ritual. Al despertar, tu cuerpo lleva 6-8 horas sin agua. Un vaso rehidrata tu cerebro (75% agua), activa el metabolismo, y le dice a tu cuerpo: hoy elijo cuidarme.</p><p class="body">Durante el cambio, la hidratacion es clave: tu cuerpo elimina toxinas almacenadas y el agua acelera ese proceso.</p><p class="body"><strong>Mision:</strong> Deja un vaso en tu mesita. Manana, antes del celular, tomalo completo.</p>',dtu:3},
-{id:'breathe',name:'5 min respiracion consciente',time:'Manana',emoji:'\u{1F9D8}',introTitle:'Respirar: tu superpoder',introBody:'<p class="body">La tecnica 4-7-8 activa tu nervio vago, baja cortisol, reduce ansiedad. Estudios muestran que reduce ansiedad en tan solo 3 ciclos.</p><p class="body">Un antojo dura 15-20 min. 4 ciclos de respiracion te ayudan a pasar ese momento.</p><p class="body"><strong>Mision:</strong> Despues del agua, 4 ciclos de 4-7-8. Usa el ejercicio guiado en la seccion Ejercicio.</p>',dtu:3},
-{id:'walk',name:'Caminar 10 min al aire libre',time:'Manana',emoji:'\u{1F6B6}',introTitle:'El paseo que transforma',introBody:'<p class="body">Caminar bajo luz natural produce serotonina y regula tu reloj circadiano, mejorando el sueno.</p><p class="body">Cambiar de entorno interrumpe el circuito del habito y reduce antojos.</p><p class="body"><strong>Mision:</strong> Despues de agua y respiracion, sal 10 min sin audifonos. Nota los sonidos y colores.</p>',dtu:4},
-{id:'journal',name:'3 agradecimientos',time:'Noche',emoji:'\u{1F4DD}',introTitle:'El diario que recablea tu cerebro',introBody:'<p class="body">Escribir 3 agradecimientos diarios por 10 semanas aumento el optimismo 25% y mejoro el sueno (UC Davis). La gratitud fortalece conexiones neurales de emociones positivas.</p><p class="body"><strong>Mision:</strong> Antes de dormir, escribe en papel 3 cosas por las que agradeces hoy.</p>',dtu:4},
-{id:'exercise',name:'Ejercicio del dia',time:'Segun horario',emoji:'\u{1F4AA}',introTitle:'Dopamina natural',introBody:'<p class="body">El ejercicio libera dopamina, endorfinas, BDNF y endocannabinoides naturales. Tu combo es ideal: natacion L/M/V, pesas J/S, yoga cuando quieras.</p><p class="body"><strong>Mision:</strong> Haz del ejercicio algo innegociable. Es una cita contigo misma.</p>',dtu:5},
-{id:'meditate',name:'Meditacion antes de dormir',time:'Noche',emoji:'\u{1F319}',introTitle:'Cerrar el dia con paz',introBody:'<p class="body">Los problemas de sueno pueden durar 30-45 dias. La meditacion es de las intervenciones mas efectivas. Solo observa tu respiracion 5-10 min.</p><p class="body">El sueno profundo es cuando tu cerebro se limpia de toxinas y repara circuitos.</p><p class="body"><strong>Mision:</strong> Despues de agradecimientos, 5 min de meditacion. Sin expectativas.</p>',dtu:999}
+{id:'water',name:'Vaso de agua al despertar',time:'Al despertar',emoji:'\u{1F4A7}',introTitle:'El poder del agua',introSub:'Tu primer paso hacia una vida nueva',introBody:'<p class="body">Al despertar, tu cuerpo lleva 6-8 horas sin agua. Un vaso rehidrata tu cerebro, activa el metabolismo, y le dice a tu cuerpo: hoy elijo cuidarme.</p><p class="body">Durante el cambio, tu cuerpo elimina toxinas almacenadas. El agua acelera ese proceso.</p>',dtu:3},
+{id:'breathe',name:'5 min respiracion consciente',time:'Manana',emoji:'\u{1F9D8}',introTitle:'Respirar: tu superpoder',introSub:'Calma instantanea en cualquier momento',introBody:'<p class="body">La tecnica 4-7-8 activa tu nervio vago, baja cortisol y reduce ansiedad en tan solo 3 ciclos. Un antojo dura 15-20 min: la respiracion te ayuda a sobrevivirlo.</p>',dtu:3},
+{id:'walk',name:'Caminar 10 min al aire libre',time:'Manana',emoji:'\u{1F6B6}',introTitle:'El paseo que transforma',introSub:'Luz natural + movimiento = serotonina',introBody:'<p class="body">Caminar bajo luz natural produce serotonina y regula tu reloj circadiano. Cambiar de entorno interrumpe el circuito del habito.</p>',dtu:4},
+{id:'journal',name:'3 agradecimientos',time:'Noche',emoji:'\u{1F4DD}',introTitle:'El diario que recablea tu cerebro',introSub:'Gratitud como herramienta neurocientifica',introBody:'<p class="body">Escribir 3 agradecimientos diarios por 10 semanas aumento el optimismo 25% (UC Davis). La gratitud fortalece conexiones de emociones positivas.</p>',dtu:4},
+{id:'exercise',name:'Ejercicio del dia',time:'Segun horario',emoji:'\u{1F4AA}',introTitle:'Dopamina natural',introSub:'Tu cuerpo produce su propio bienestar',introBody:'<p class="body">El ejercicio libera dopamina, endorfinas, BDNF y endocannabinoides naturales. Natacion L/M/V, pesas J/S, yoga cuando quieras.</p>',dtu:5},
+{id:'meditate',name:'Meditacion antes de dormir',time:'Noche',emoji:'\u{1F319}',introTitle:'Cerrar el dia con paz',introSub:'El sueno profundo es donde tu cerebro sana',introBody:'<p class="body">La meditacion antes de dormir es de las intervenciones mas efectivas para los problemas de sueno. Solo observa tu respiracion 5-10 min.</p>',dtu:999}
 ];
 
-/* DAILY DRIP CONTENT: each item unlocks on a specific day.
-   type: 'reading','tip','motivation','exercise_tip','milestone' */
 var DAILY=[
-{day:0,type:'reading',emoji:'\u{1F331}',cat:'BIENVENIDA',title:'Tu primer dia',prev:'Todo lo que necesitas saber para empezar',body:'<p class="body">Hoy es tu dia uno. No necesitas ser perfecta, solo necesitas empezar.</p><p class="body">Los primeros 3 dias son los mas intensos. Tu cuerpo comienza a eliminar THC y puede reaccionar con irritabilidad, ansiedad o dificultad para dormir. Esto es normal y temporal.</p><p class="body">Tu unica mision hoy: tomar tu vaso de agua al despertar y completar tu primer ritual. Eso es todo. Un paso.</p><p class="body">Tienes el boton SOS (el boton rosa) disponible 24/7 para momentos dificiles. Usalo sin miedo.</p>'},
-{day:1,type:'reading',emoji:'\u{1F9E0}',cat:'NEUROCIENCIA',title:'Tu cerebro en modo reinicio',prev:'Como tu sistema de dopamina se recalibra',body:'<p class="body">Tus circuitos de recompensa han funcionado con un estimulo externo. Al removerlo, la dopamina baja. Los primeros dias se sienten grises, pero tu cerebro tiene neuroplasticidad.</p><p class="body">En 2-4 semanas, los receptores se regeneran. Nadar, cocinar, conversar se sentiran mas placenteros que en mucho tiempo.</p><p class="body">Despues de 90 dias, la densidad de receptores D2 aumenta significativamente. Tu capacidad de placer natural se restaura.</p>'},
-{day:2,type:'motivation',emoji:'\u{26A1}',cat:'MOTIVACION',title:'Dia 3: el mas dificil',prev:'Hoy es el pico. Despues de hoy, mejora.',body:'<p class="body">Si llegaste aqui, ya superaste lo peor. El dia 3 es cuando los sintomas de abstinencia alcanzan su pico: ansiedad, irritabilidad, tal vez dificultad para dormir.</p><p class="body">PERO: despues de hoy, los sintomas fisicos empiezan a ceder. Cada hora que pasa, tu cuerpo se recalibra.</p><p class="body">Hoy usa el boton SOS todas las veces que necesites. Haz respiraciones 4-7-8. Muevete. No estas sola en esto.</p><p class="body">Manana te sentiras diferente. Te lo prometo.</p>'},
-{day:3,type:'reading',emoji:'\u{1F4A7}',cat:'BIENESTAR',title:'La regla de los 15 minutos',prev:'La estrategia mas simple contra antojos',body:'<p class="body">Un antojo dura 15-20 minutos. Siempre pasa. La regla: di "voy a esperar 15 minutos." Haz sentadillas, respiracion, llama a alguien, agua fria.</p><p class="body">Neurociencia: el antojo es un pico de actividad cerebral que si no lo alimentas, se apaga solo. Cada antojo superado fortalece tu autocontrol.</p>'},
-{day:4,type:'exercise_tip',emoji:'\u{1F3CA}',cat:'NATACION',title:'Tu medicina liquida',prev:'Por que nadar es perfecto ahora',body:'<p class="body">La inmersion en agua activa el parasimpatico, reduciendo cortisol y ansiedad. La respiracion ritmica es pranayama natural.</p><p class="body">La natacion reduce ansiedad y depresion, estimula endorfinas, serotonina y BDNF. Los dias que nadas, tu cuerpo produce adenosina que mejora el sueno.</p><p class="body"><strong>Tip:</strong> Ultimos 5 min, flota boca arriba. Cierra ojos, respira profundo.</p>'},
-{day:5,type:'reading',emoji:'\u{1F634}',cat:'SUENO',title:'Redescubriendo el sueno profundo',prev:'Tu sueno se transformara',body:'<p class="body">Los problemas de sueno pueden durar 30-45 dias. Pero despues, la mayoria reporta el mejor sueno de sus vidas. Los suenos vividos son senal de que tu REM regresa.</p><p class="body"><strong>Higiene del sueno:</strong> Horarios consistentes. Sin pantallas 1h antes. Respiracion 4-7-8. Habitacion fresca 18-20C. Tu natacion promueve sueno profundo.</p>'},
-{day:7,type:'milestone',emoji:'\u{1F389}',cat:'CELEBRACION',title:'Una semana completa!',prev:'Celebra este logro enorme',body:'<p class="body">UNA SEMANA. Los sintomas fisicos ya estan cediendo. Tu cuerpo esta procesando y eliminando toxinas.</p><p class="body">Piensa en lo que has logrado: 7 dias de elegirte a ti misma. 7 dias de rituales. 7 dias de ser mas fuerte que la inercia.</p><p class="body">Esta semana fue la mas dificil. Si pudiste con esta, puedes con todo lo que viene.</p>'},
-{day:8,type:'reading',emoji:'\u{1F34E}',cat:'NUTRICION',title:'Alimentando la recuperacion',prev:'Nutrientes que tu cerebro necesita',body:'<p class="body"><strong>Omega-3</strong> (salmon, nueces, chia): Reparan membranas neuronales. <strong>Magnesio</strong> (espinacas, almendras, chocolate oscuro): Mineral de la calma. <strong>Vitaminas B</strong> (huevos, legumbres, aguacate): Cruciales para serotonina y dopamina.</p><p class="body">Hidratacion: minimo 2L de agua diaria.</p>'},
-{day:10,type:'reading',emoji:'\u{1F504}',cat:'PSICOLOGIA',title:'El poder de los rituales',prev:'Como los habitos reemplazan patrones',body:'<p class="body">Los habitos no se eliminan, se reemplazan. Senal, rutina, recompensa. La estrategia no es fuerza de voluntad, es crear rituales nuevos.</p><p class="body">University College London: un habito nuevo tarda 66 dias en automatizarse. Las primeras 9-10 semanas son cruciales.</p><p class="body"><strong>Ejercicio:</strong> Identifica tus 3 triggers principales. Para cada uno, escribe una alternativa.</p>'},
-{day:12,type:'exercise_tip',emoji:'\u{1F9D8}',cat:'YOGA',title:'Yoga para la transformacion',prev:'Posturas que calman la ansiedad',body:'<p class="body"><strong>Balasana:</strong> 3-5 min, efectiva como ansioliticos leves (Harvard). <strong>Viparita Karani:</strong> 10 min piernas en pared, reduce cortisol. <strong>Torsiones:</strong> Estimulan desintoxicacion.</p><p class="body"><strong>Express 10 min:</strong> 3 min balasana + 3 min torsion supina + 4 min viparita karani.</p>'},
-{day:14,type:'milestone',emoji:'\u{1F31F}',cat:'CELEBRACION',title:'Dos semanas!',prev:'Tu cuerpo ya cambio',body:'<p class="body">DOS SEMANAS. Tu apetito se normalizo. Los sintomas fisicos han cedido casi por completo. Tu circulacion mejora.</p><p class="body">A partir de aqui, cada dia es mas facil que el anterior. Los antojos seran menos frecuentes y menos intensos.</p>'},
-{day:16,type:'reading',emoji:'\u{1F4AA}',cat:'MOTIVACION',title:'Identidad, no fuerza de voluntad',prev:'El cambio mas poderoso es de identidad',body:'<p class="body">No se trata de "estoy dejando algo." Se trata de "soy una persona que cuida su cuerpo y mente." No te privas, eliges ser alguien diferente.</p><p class="body">Cada ritual completado es un voto por tu nueva identidad. Tu ya eres esa persona. Este viaje es dejar que emerja.</p>'},
-{day:19,type:'exercise_tip',emoji:'\u{1F3CB}',cat:'PESAS',title:'Fuerza que transforma',prev:'Tu rutina de pesas y por que importa',body:'<p class="body">El entrenamiento de fuerza aumenta la densidad osea, mejora la postura, y libera hormonas de crecimiento que aceleran la regeneracion celular.</p><p class="body">Cada repeticion es una declaracion: soy fuerte, soy capaz, me elijo. Los jueves y sabados son tus dias de potencia.</p><p class="body"><strong>Tip:</strong> Aumenta peso gradualmente. Si las ultimas 2 reps no cuestan, sube peso.</p>'},
-{day:21,type:'milestone',emoji:'\u{1F33B}',cat:'CELEBRACION',title:'Tres semanas!',prev:'Los sintomas agudos ya pasaron',body:'<p class="body">TRES SEMANAS. La mayoria de los sintomas agudos se han resuelto. Tu sueno mejora notablemente. Tu arquitectura del sueno se esta restaurando.</p><p class="body">Tu cuerpo ha eliminado la mayor parte de las toxinas. Los antojos son menos frecuentes.</p>'},
-{day:24,type:'reading',emoji:'\u{1F9EC}',cat:'NEUROCIENCIA',title:'Neuroplasticidad en accion',prev:'Tu cerebro esta formando nuevos caminos',body:'<p class="body">Cada dia que pasa, tu cerebro forma nuevas conexiones. Los circuitos del viejo habito se debilitan mientras los nuevos se fortalecen.</p><p class="body">Es como un sendero en el bosque: dejas de caminar por el viejo y empieza a cubrirse de hierba. El nuevo sendero se hace mas claro con cada paso.</p>'},
-{day:28,type:'reading',emoji:'\u{1F9E0}',cat:'CIENCIA',title:'Endocannabinoides naturales',prev:'Tu cuerpo produce sus propios cannabinoides',body:'<p class="body">Tu cuerpo tiene un sistema endocannabinoide que produce sus propias moleculas de bienestar: anandamida (la "molecula de la felicidad") y 2-AG.</p><p class="body">El ejercicio, especialmente correr y nadar, aumenta naturalmente estos compuestos. El "runner\u0027s high" es literalmente endocannabinoides en accion.</p><p class="body">Con el uso externo, este sistema se desregula. Ahora se esta recalibrando. Tu cuerpo esta reaprendiendo a producir bienestar por si mismo.</p>'},
-{day:30,type:'milestone',emoji:'\u{2728}',cat:'CELEBRACION',title:'UN MES LIBRE!',prev:'Un logro monumental',body:'<p class="body">UN MES. El THC se ha eliminado de tu cuerpo. Tu sistema endocannabinoide se recalibra. Tu funcion pulmonar mejora.</p><p class="body">Mira atras: hace 30 dias esto parecia imposible. Hoy es tu realidad. Eres mas fuerte de lo que creias.</p>'},
-{day:35,type:'reading',emoji:'\u{1F4A1}',cat:'BIENESTAR',title:'Dopamina natural: tu menu',prev:'Actividades que activan tu sistema de recompensa',body:'<p class="body">Tu cerebro necesita fuentes saludables de dopamina. Aqui van las mas potentes: ejercicio intenso, lograr metas pequenas, aprender algo nuevo, musica, cocinar, conexion social genuina, exposicion al frio, meditacion.</p><p class="body">La clave es variedad. Rota entre estas actividades para mantener tu sistema de recompensa activo y saludable.</p>'},
-{day:42,type:'milestone',emoji:'\u{1F33A}',cat:'CELEBRACION',title:'6 semanas!',prev:'Tu sueno ya es profundo y reparador',body:'<p class="body">Tu funcion pulmonar ha mejorado significativamente. La tos ha disminuido. Respiras mas facil.</p><p class="body">Tu sueno es mas profundo y reparador que en mucho tiempo. La claridad mental aumenta cada dia.</p>'},
-{day:50,type:'reading',emoji:'\u{1F9E9}',cat:'PSICOLOGIA',title:'Previniendo recaidas',prev:'Estrategias basadas en evidencia',body:'<p class="body">La recaida no es fracaso, es informacion. Si pasa, no borra tu progreso. Analiza el trigger, ajusta la estrategia, y sigue.</p><p class="body">Las situaciones de mayor riesgo: estres agudo, celebraciones sociales, aburrimiento, soledad. Para cada una, ten un plan B preparado.</p><p class="body">Recuerda: cada dia que sumaste esta guardado. Ningun resbalon borra 50 dias de transformacion.</p>'},
-{day:60,type:'milestone',emoji:'\u{1F31E}',cat:'CELEBRACION',title:'Dos meses!',prev:'Tu cerebro se ha transformado',body:'<p class="body">Tu atencion y memoria han mejorado mediblemente. Tu sistema de dopamina se acerca a su equilibrio natural. Tus habitos son casi automaticos.</p><p class="body">Si alguien te viera ahora vs hace 60 dias, notaria la diferencia. Tu piel, tu energia, tus ojos, tu presencia.</p>'},
-{day:75,type:'reading',emoji:'\u{1F30D}',cat:'BIENESTAR',title:'Redescubriendo quien eres',prev:'Sin la sustancia, quien eres realmente?',body:'<p class="body">Muchas personas descubren que sin la sustancia, emergen partes de si mismas que habian olvidado. Creatividad, ambicion, sensibilidad, humor.</p><p class="body">Este es un momento para explorar: que te gusta hacer? Que te emociona? Que quieres lograr? Las respuestas pueden sorprenderte.</p>'},
-{day:90,type:'milestone',emoji:'\u{1F338}',cat:'CELEBRACION',title:'TRES MESES LIBRE!',prev:'Tu transformacion es real',body:'<p class="body">TRES MESES. Los receptores CB1 se han restaurado significativamente. Tu capacidad de experimentar placer natural esta en niveles que no tenias en anos.</p><p class="body">Tu equilibrio emocional, sueno, concentracion, energia, relaciones, todo ha mejorado. Esta es tu nueva normalidad.</p><p class="body">Lo que lograste requirio coraje, disciplina y vulnerabilidad. Celebra. Te lo mereces.</p>'}
+{day:0,type:'reading',emoji:'\u{1F331}',cat:'BIENVENIDA',title:'Tu primer dia',prev:'Todo lo que necesitas saber',body:'<p class="body">Hoy es tu dia uno. Los primeros 3 dias son los mas intensos. Tu cuerpo comienza a eliminar THC y puede reaccionar con irritabilidad, ansiedad o dificultad para dormir. Esto es normal y temporal.</p><p class="body">Tu unica mision: completar tu primer ritual. Tienes el boton SOS disponible 24/7.</p>'},
+{day:1,type:'reading',emoji:'\u{1F9E0}',cat:'NEUROCIENCIA',title:'Tu cerebro en modo reinicio',prev:'Como se recalibra tu dopamina',body:'<p class="body">Tus circuitos de recompensa han funcionado con un estimulo externo. Al removerlo, la dopamina baja temporalmente. Pero tu cerebro tiene neuroplasticidad: en 2-4 semanas los receptores se regeneran.</p><p class="body">Despues de 90 dias, tu capacidad de placer natural se restaura significativamente.</p>'},
+{day:2,type:'motivation',emoji:'\u26A1',cat:'PREPARATE',title:'Manana es el pico',prev:'Dia 3 sera intenso. Estas lista.',body:'<p class="body">Manana los sintomas alcanzan su punto maximo. PERO: despues del dia 3, los sintomas fisicos empiezan a ceder. Prepara tu boton SOS y tu respiracion 4-7-8.</p>'},
+{day:3,type:'reading',emoji:'\u{1F4A7}',cat:'ESTRATEGIA',title:'La regla de los 15 minutos',prev:'Tu arma secreta contra antojos',body:'<p class="body">Un antojo dura 15-20 minutos. Siempre. Di "voy a esperar 15 minutos" y haz algo: sentadillas, respiracion, llama a alguien. El antojo se apaga solo si no lo alimentas.</p>'},
+{day:4,type:'exercise_tip',emoji:'\u{1F3CA}',cat:'NATACION',title:'Tu medicina liquida',prev:'Por que nadar es perfecto ahora',body:'<p class="body">La inmersion activa el parasimpatico, reduce cortisol. La respiracion ritmica es pranayama natural. Los dias que nadas, tu cuerpo produce adenosina que mejora el sueno.</p><p class="body"><strong>Tip:</strong> Ultimos 5 min, flota boca arriba con los ojos cerrados.</p>'},
+{day:5,type:'reading',emoji:'\u{1F634}',cat:'SUENO',title:'Redescubriendo el sueno',prev:'Tu sueno se transformara',body:'<p class="body">Problemas de sueno pueden durar 30-45 dias, pero despues la mayoria reporta el mejor sueno de sus vidas. Suenos vividos = tu REM regresa.</p><p class="body"><strong>Higiene:</strong> Horarios fijos. Sin pantallas 1h antes. Respiracion 4-7-8. Cuarto fresco.</p>'},
+{day:7,type:'milestone',emoji:'\u{1F389}',cat:'CELEBRACION',title:'UNA SEMANA!',prev:'Superaste lo mas dificil',body:'<p class="body">7 dias eligiendote. Los sintomas fisicos estan cediendo. Si pudiste con esta semana, puedes con todo lo que viene.</p>'},
+{day:8,type:'reading',emoji:'\u{1F34E}',cat:'NUTRICION',title:'Alimentando la recuperacion',prev:'Nutrientes clave para tu cerebro',body:'<p class="body"><strong>Omega-3</strong> (salmon, nueces, chia): Reparan neuronas. <strong>Magnesio</strong> (espinacas, almendras, chocolate oscuro): Mineral de la calma. <strong>Vitaminas B</strong> (huevos, legumbres, aguacate): Para serotonina y dopamina. Minimo 2L agua diaria.</p>'},
+{day:10,type:'reading',emoji:'\u{1F504}',cat:'PSICOLOGIA',title:'El poder de los rituales',prev:'Habitos se reemplazan, no se eliminan',body:'<p class="body">Senal + rutina + recompensa. No uses fuerza de voluntad: crea rituales nuevos para las mismas senales. Un habito nuevo tarda 66 dias en automatizarse (UCL). Estas en camino.</p>'},
+{day:12,type:'exercise_tip',emoji:'\u{1F9D8}',cat:'YOGA',title:'Yoga para la transformacion',prev:'Posturas que calman la ansiedad',body:'<p class="body"><strong>Balasana:</strong> 3-5 min, efectiva como ansioliticos (Harvard). <strong>Viparita Karani:</strong> 10 min piernas en pared. <strong>Express 10 min:</strong> 3 min balasana + 3 min torsion + 4 min viparita karani.</p>'},
+{day:14,type:'milestone',emoji:'\u{1F31F}',cat:'CELEBRACION',title:'DOS SEMANAS!',prev:'Tu cuerpo ya cambio',body:'<p class="body">Tu apetito se normalizo. Sintomas fisicos casi eliminados. Circulacion mejora. Cada dia es mas facil.</p>'},
+{day:16,type:'reading',emoji:'\u{1F4AA}',cat:'IDENTIDAD',title:'Identidad, no fuerza de voluntad',prev:'El cambio mas poderoso',body:'<p class="body">No "dejas algo." Eliges ser alguien que cuida su cuerpo y mente. Cada ritual es un voto por tu nueva identidad. Tu ya eres esa persona.</p>'},
+{day:19,type:'exercise_tip',emoji:'\u{1F3CB}',cat:'PESAS',title:'Fuerza que transforma',prev:'Por que importa tu rutina de pesas',body:'<p class="body">Entrenamiento de fuerza aumenta densidad osea, mejora postura, libera hormona de crecimiento. Cada repeticion es una declaracion: soy fuerte, soy capaz.</p><p class="body"><strong>Tip:</strong> Si las ultimas 2 reps no cuestan, sube peso.</p>'},
+{day:21,type:'milestone',emoji:'\u{1F33B}',cat:'CELEBRACION',title:'TRES SEMANAS!',prev:'Sintomas agudos resueltos',body:'<p class="body">La mayoria de sintomas agudos se resolvieron. Tu sueno mejora cada noche. Antojos menos frecuentes e intensos.</p>'},
+{day:24,type:'reading',emoji:'\u{1F9EC}',cat:'NEUROCIENCIA',title:'Neuroplasticidad en accion',prev:'Tu cerebro forma nuevos caminos',body:'<p class="body">Los circuitos del viejo habito se debilitan. Los nuevos se fortalecen. Como un sendero: dejas de caminar por el viejo y se cubre de hierba.</p>'},
+{day:28,type:'reading',emoji:'\u{1F9E0}',cat:'CIENCIA',title:'Endocannabinoides naturales',prev:'Tu cuerpo produce bienestar propio',body:'<p class="body">Tu cuerpo tiene un sistema que produce anandamida (molecula de la felicidad). El ejercicio lo activa naturalmente. El "runners high" son endocannabinoides en accion. Tu cuerpo esta reaprendiendo a producir bienestar solo.</p>'},
+{day:30,type:'milestone',emoji:'\u2728',cat:'CELEBRACION',title:'UN MES!',prev:'Logro monumental',body:'<p class="body">THC eliminado de tu cuerpo. Sistema endocannabinoide recalibrandose. Funcion pulmonar mejorando. Hace 30 dias parecia imposible. Hoy es tu realidad.</p>'},
+{day:35,type:'reading',emoji:'\u{1F4A1}',cat:'BIENESTAR',title:'Menu de dopamina natural',prev:'Actividades para tu sistema de recompensa',body:'<p class="body">Fuentes saludables: ejercicio intenso, lograr metas, aprender algo nuevo, musica, cocinar, conexion social, agua fria, meditacion. Rota entre ellas.</p>'},
+{day:42,type:'milestone',emoji:'\u{1F33A}',cat:'CELEBRACION',title:'6 SEMANAS!',prev:'Funcion pulmonar mejorada',body:'<p class="body">Tos disminuida. Respiracion mas facil. Sueno profundo restaurado. Claridad mental cada dia mayor.</p>'},
+{day:50,type:'reading',emoji:'\u{1F9E9}',cat:'PREVENCION',title:'Previniendo recaidas',prev:'Estrategias basadas en evidencia',body:'<p class="body">La recaida no borra progreso. Riesgo alto: estres agudo, celebraciones, aburrimiento, soledad. Ten un plan B para cada situacion. Puedes usar el boton de reinicio sin perder rituales ni lecturas.</p>'},
+{day:60,type:'milestone',emoji:'\u{1F31E}',cat:'CELEBRACION',title:'DOS MESES!',prev:'Tu cerebro transformado',body:'<p class="body">Atencion y memoria mejoradas mediblemente. Dopamina cerca de equilibrio natural. Habitos casi automaticos. Si alguien te viera vs hace 60 dias, notaria la diferencia.</p>'},
+{day:75,type:'reading',emoji:'\u{1F30D}',cat:'BIENESTAR',title:'Redescubriendote',prev:'Quien eres sin la sustancia?',body:'<p class="body">Sin la sustancia emergen partes olvidadas: creatividad, ambicion, sensibilidad. Que te gusta? Que te emociona? Las respuestas pueden sorprenderte.</p>'},
+{day:90,type:'milestone',emoji:'\u{1F338}',cat:'CELEBRACION',title:'TRES MESES!',prev:'Tu transformacion es real',body:'<p class="body">Receptores CB1 restaurados. Capacidad de placer natural en niveles que no tenias en anos. Equilibrio emocional, sueno, concentracion, energia: todo mejor. Lo lograste.</p>'}
 ];
 
 var HEALTH=[
-{title:'Ritmo cardiaco',desc:'Frecuencia cardiaca se normaliza.',time:'20 min',hours:.33,icon:'\u2764\uFE0F',color:'#ef4444',bg:'rgba(239,68,68,.12)'},
-{title:'THC activo eliminado',desc:'Efectos psicoactivos desaparecen.',time:'3 horas',hours:3,icon:'\u{1F9E0}',color:'#a594f9',bg:'rgba(165,148,249,.12)'},
-{title:'Inicio desintoxicacion',desc:'Tu cuerpo procesa THC almacenado.',time:'24-48h',hours:36,icon:'\u{1F504}',color:'#fbbf24',bg:'rgba(251,191,36,.12)'},
-{title:'Pico de sintomas',desc:'Punto maximo. Despues mejora.',time:'Dia 3',hours:72,icon:'\u26A1',color:'#f472b6',bg:'rgba(244,114,182,.12)'},
-{title:'Sintomas fisicos ceden',desc:'Sudoracion y nauseas disminuyen.',time:'4-7 dias',hours:120,icon:'\u{1F321}\uFE0F',color:'#3ecfcf',bg:'rgba(62,207,207,.12)'},
-{title:'Apetito normalizado',desc:'Los alimentos saben bien otra vez.',time:'2 semanas',hours:336,icon:'\u{1F34E}',color:'#34d399',bg:'rgba(52,211,153,.12)'},
-{title:'Sueno reparador',desc:'Mas REM y sueno profundo.',time:'3-4 semanas',hours:600,icon:'\u{1F634}',color:'#818cf8',bg:'rgba(129,140,248,.12)'},
-{title:'THC eliminado',desc:'Sistema endocannabinoide se recalibra.',time:'30 dias',hours:720,icon:'\u2728',color:'#c084fc',bg:'rgba(192,132,252,.12)'},
-{title:'Funcion pulmonar',desc:'Tos y flema disminuyen.',time:'4-6 sem',hours:1008,icon:'\u{1FAC1}',color:'#06b6d4',bg:'rgba(6,182,212,.12)'},
-{title:'Claridad cognitiva',desc:'Mejoras en atencion y memoria.',time:'1-3 meses',hours:1440,icon:'\u{1F4A1}',color:'#fbbf24',bg:'rgba(251,191,36,.12)'},
-{title:'Equilibrio emocional',desc:'Dopamina recalibrada.',time:'3 meses',hours:2160,icon:'\u2600\uFE0F',color:'#f59e0b',bg:'rgba(245,158,11,.12)'},
-{title:'Receptores restaurados',desc:'Placer natural restaurado.',time:'4-6 meses',hours:4320,icon:'\u{1F338}',color:'#ec4899',bg:'rgba(236,72,153,.12)'}
+{title:'Ritmo cardiaco',desc:'Tu frecuencia cardiaca se normaliza.',time:'20 min',hours:.33,icon:'\u2764\uFE0F',color:'#ef4444',bg:'rgba(239,68,68,.12)',detail:'<p class="body">El THC eleva transitoriamente la frecuencia cardiaca entre 20-50 latidos por minuto. Al dejar de consumir, este efecto desaparece rapidamente.</p><p class="body">En tan solo 20 minutos, tu corazon vuelve a su ritmo natural, reduciendo el estres cardiovascular inmediato.</p>'},
+{title:'THC activo eliminado',desc:'Efectos psicoactivos desaparecen.',time:'3 horas',hours:3,icon:'\u{1F9E0}',color:'#a594f9',bg:'rgba(165,148,249,.12)',detail:'<p class="body">Los efectos psicoactivos del THC duran 2-3 horas. Despues de este periodo, tu cerebro comienza a funcionar sin la influencia directa de la sustancia.</p><p class="body">Aunque metabolitos permanecen almacenados en grasa, tu mente ya empieza a operar con mayor claridad.</p>'},
+{title:'Inicio desintoxicacion',desc:'Tu cuerpo procesa THC almacenado.',time:'24-48h',hours:36,icon:'\u{1F504}',color:'#fbbf24',bg:'rgba(251,191,36,.12)',detail:'<p class="body">El THC se almacena en las celulas de grasa. Tu cuerpo comienza a liberar y metabolizar estos depositos. Puedes sentir irritabilidad y ansiedad: es tu sistema nervioso reajustandose.</p><p class="body">Hidratacion y ejercicio aceleran este proceso de limpieza natural.</p>'},
+{title:'Pico de sintomas',desc:'Punto maximo. Despues mejora.',time:'Dia 3',hours:72,icon:'\u26A1',color:'#f472b6',bg:'rgba(244,114,182,.12)',detail:'<p class="body">El dia 3 es estadisticamente el mas dificil: ansiedad, irritabilidad, insomnio y posibles sudoraciones alcanzan su punto maximo.</p><p class="body">La buena noticia: a partir de aqui, cada dia es un poco mas facil. Tu cuerpo esta en plena recalibracion.</p>'},
+{title:'Sintomas fisicos ceden',desc:'Sudoracion y nauseas disminuyen.',time:'4-7 dias',hours:120,icon:'\u{1F321}\uFE0F',color:'#3ecfcf',bg:'rgba(62,207,207,.12)',detail:'<p class="body">Los sintomas fisicos (sudoracion, dolor de estomago, nauseas) se reducen significativamente. Los psicologicos como irritabilidad pueden persistir pero con menor intensidad.</p>'},
+{title:'Apetito normalizado',desc:'Los alimentos saben bien otra vez.',time:'2 semanas',hours:336,icon:'\u{1F34E}',color:'#34d399',bg:'rgba(52,211,153,.12)',detail:'<p class="body">El THC afecta los receptores que regulan el apetito y el sabor. Al eliminarlo, tu sistema digestivo se reequilibra: el apetito se estabiliza y los alimentos recuperan su sabor natural.</p>'},
+{title:'Sueno reparador',desc:'Mas REM y sueno profundo.',time:'3-4 sem',hours:600,icon:'\u{1F634}',color:'#818cf8',bg:'rgba(129,140,248,.12)',detail:'<p class="body">El THC suprime el sueno REM. Al dejarlo, experimentas un "rebote REM": suenos vividos e intensos. Esto es tu cerebro restaurando su arquitectura natural del sueno.</p><p class="body">Despues de 3-4 semanas, la calidad del sueno mejora dramaticamente.</p>'},
+{title:'THC eliminado del cuerpo',desc:'Sistema endocannabinoide se recalibra.',time:'30 dias',hours:720,icon:'\u2728',color:'#c084fc',bg:'rgba(192,132,252,.12)',detail:'<p class="body">Para la mayoria, 30 dias es suficiente para eliminar completamente el THC. Tu sistema endocannabinoide, el sistema de regulacion natural del cuerpo, comienza a funcionar por si mismo otra vez.</p>'},
+{title:'Funcion pulmonar',desc:'Tos y flema disminuyen.',time:'4-6 sem',hours:1008,icon:'\u{1FAC1}',color:'#06b6d4',bg:'rgba(6,182,212,.12)',detail:'<p class="body">Si fumabas, los cilios pulmonares (los "pelos" que limpian tus vias respiratorias) comienzan a regenerarse. La tos productiva disminuye y respirar se siente mas facil.</p><p class="body">Tu natacion potencia esta mejora: el ejercicio aerobico fortalece la capacidad pulmonar.</p>'},
+{title:'Claridad cognitiva',desc:'Mejoras en atencion y memoria.',time:'1-3 meses',hours:1440,icon:'\u{1F4A1}',color:'#fbbf24',bg:'rgba(251,191,36,.12)',detail:'<p class="body">Estudios muestran mejoras medibles en atencion sostenida, velocidad de procesamiento y memoria de trabajo a partir del primer mes.</p><p class="body">A los 3 meses, las funciones ejecutivas (planificacion, toma de decisiones) mejoran significativamente.</p>'},
+{title:'Equilibrio emocional',desc:'Dopamina recalibrada.',time:'3 meses',hours:2160,icon:'\u2600\uFE0F',color:'#f59e0b',bg:'rgba(245,158,11,.12)',detail:'<p class="body">Tu sistema de dopamina se ha recalibrado. La ansiedad y los cambios de humor se estabilizan. Experimentas emociones con mayor riqueza y matiz, sin la modulacion artificial de la sustancia.</p>'},
+{title:'Receptores restaurados',desc:'Placer natural restaurado.',time:'4-6 meses',hours:4320,icon:'\u{1F338}',color:'#ec4899',bg:'rgba(236,72,153,.12)',detail:'<p class="body">Los receptores CB1 del sistema endocannabinoide regresan a su densidad normal. Tu capacidad de experimentar placer, motivacion y recompensa de forma natural esta completamente restaurada.</p><p class="body">Actividades cotidianas como cocinar, socializar, el ejercicio, se sienten genuinamente placenteras.</p>'}
 ];
 
 var JOURNEY=[
 {wk:'Pre-inicio',title:'Preparando el terreno',desc:'Tu primer ritual, identifica triggers, prepara entorno.'},
 {wk:'Semana 1-2',title:'La tormenta inicial',desc:'Dias 1-3 mas intensos. Rituales y SOS son tus amigos.'},
-{wk:'Semana 3-4',title:'Los primeros brotes',desc:'Sintomas fisicos ceden. Sueno mejora. Dopamina natural emerge.'},
-{wk:'Semana 5-6',title:'Raices profundas',desc:'Claridad mental. Rituales son habitos. Nuevas fuentes de placer.'},
-{wk:'Semana 7-8',title:'Floreciendo',desc:'Energia y motivacion aumentan. Antojos menos frecuentes.'},
+{wk:'Semana 3-4',title:'Los primeros brotes',desc:'Sintomas fisicos ceden. Sueno mejora. Dopamina natural.'},
+{wk:'Semana 5-6',title:'Raices profundas',desc:'Claridad mental. Rituales automaticos. Nuevas fuentes de placer.'},
+{wk:'Semana 7-8',title:'Floreciendo',desc:'Energia y motivacion. Antojos infrecuentes.'},
 {wk:'Semana 9-12',title:'Tu nueva vida',desc:'Receptores restaurados. Sueno profundo. Libre.'}
 ];
 
 var EXER=[
-{name:'Sentadilla con mancuerna',tgt:'Piernas + Gluteos',icon:'\u{1F9B5}',col:'rgba(239,68,68,.12)',sets:'3 x 10-12',det:'Mancuerna al pecho. Pies mas abiertos que caderas. Baja como sentandote. Rodillas siguen pies. Espalda recta.'},
-{name:'Peso muerto con mancuernas',tgt:'Gluteos + Espalda baja',icon:'\u{1F351}',col:'rgba(244,114,182,.12)',sets:'3 x 10',det:'Mancuernas frente a muslos. Rodillas apenas flexionadas. Empuja cadera atras. Sube apretando gluteos. Es mover cadera, no bajar mancuernas.'},
+{name:'Sentadilla con mancuerna',tgt:'Piernas + Gluteos',icon:'\u{1F9B5}',col:'rgba(239,68,68,.12)',sets:'3 x 10-12',det:'Mancuerna al pecho. Pies abiertos. Baja controlada. Rodillas siguen pies. Espalda recta.'},
+{name:'Peso muerto con mancuernas',tgt:'Gluteos + Espalda baja',icon:'\u{1F351}',col:'rgba(244,114,182,.12)',sets:'3 x 10',det:'Mancuernas frente a muslos. Empuja cadera atras. Sube apretando gluteos. Es mover cadera, no bajar mancuernas.'},
 {name:'Remo con mancuerna',tgt:'Espalda + Brazos',icon:'\u{1F4AA}',col:'rgba(62,207,207,.12)',sets:'3 x 12',det:'Torso inclinado. Espalda recta. Jala hacia ombligo. Aprieta escapulas.'},
-{name:'Press de pecho en suelo',tgt:'Pecho + Brazos',icon:'\u{1FAC0}',col:'rgba(139,92,246,.12)',sets:'3 x 10-12',det:'Acostada en piso. Codos apoyan en suelo. Empuja mancuernas arriba. Controla bajada.'},
-{name:'Press de hombros',tgt:'Hombros + Core',icon:'\u{1F64B}',col:'rgba(245,158,11,.12)',sets:'3 x 8-10',det:'De pie o sentada. Abdomen firme. Empuja arriba. No arques espalda.'},
-{name:'Plancha',tgt:'Core completo',icon:'\u{1F9F1}',col:'rgba(52,211,153,.12)',sets:'3 x 30-45s',det:'Antebrazos en suelo. Ombligo adentro. Gluteos apretados. Respira. Descanso 60-90s.'}
+{name:'Press de pecho en suelo',tgt:'Pecho + Brazos',icon:'\u{1FAC0}',col:'rgba(139,92,246,.12)',sets:'3 x 10-12',det:'Acostada en piso. Codos en suelo. Empuja mancuernas arriba. Controla bajada.'},
+{name:'Press de hombros',tgt:'Hombros + Core',icon:'\u{1F64B}',col:'rgba(245,158,11,.12)',sets:'3 x 8-10',det:'Abdomen firme. Empuja arriba. No arques espalda.'},
+{name:'Plancha',tgt:'Core completo',icon:'\u{1F9F1}',col:'rgba(52,211,153,.12)',sets:'3 x 30-45s',det:'Antebrazos en suelo. Ombligo adentro. Gluteos apretados. Descanso 60-90s.'}
 ];
 
 var QUOTES=[
 {t:"El mejor momento para plantar un arbol fue hace 20 anos. El segundo mejor es ahora.",a:"Proverbio chino"},
-{t:"Cada manana nacemos de nuevo. Lo que hacemos hoy es lo que mas importa.",a:"Buda"},
-{t:"Tu cuerpo puede resistir casi todo. Es tu mente la que tienes que convencer.",a:"Andrew Murphy"},
-{t:"No cuentes los dias. Haz que los dias cuenten.",a:"Muhammad Ali"},
-{t:"Entre el estimulo y la respuesta hay un espacio. En ese espacio esta tu libertad.",a:"Viktor Frankl"},
+{t:"Cada manana nacemos de nuevo. Lo que hacemos hoy importa.",a:"Buda"},
+{t:"Tu cuerpo puede resistir casi todo. Es tu mente la que debes convencer.",a:"Andrew Murphy"},
+{t:"No cuentes los dias. Haz que cuenten.",a:"Muhammad Ali"},
+{t:"Entre el estimulo y la respuesta hay un espacio. Ahi esta tu libertad.",a:"Viktor Frankl"},
 {t:"Caer esta permitido. Levantarse es obligatorio.",a:"Proverbio japones"},
 {t:"Soy mas fuerte que mis excusas.",a:"Tu"},
-{t:"La fuerza no viene de ganar. Viene de las luchas que decidiste no abandonar.",a:"Gandhi"},
+{t:"La fuerza viene de las luchas que decidiste no abandonar.",a:"Gandhi"},
 {t:"No tienes que ver toda la escalera. Solo da el primer paso.",a:"MLK Jr."},
 {t:"Lo que no te destruye, te transforma.",a:"Anonimo"},
 {t:"Inhala coraje, exhala miedo.",a:"Anonimo"},
-{t:"El dolor es temporal. Rendirse es para siempre.",a:"Anonimo"}
+{t:"Hoy elijo ser libre.",a:"Tu"}
 ];
 
-// === CORE ===
+// === ONBOARDING (FIX: proper localStorage check) ===
 var obStep=1;
 function obNext(){if(obStep===2){var v=document.getElementById('inpDate').value;if(!v){document.getElementById('inpDate').style.borderColor='#ef4444';return}D.start=v}obStep++;document.querySelectorAll('.ob-step').forEach(function(s){s.classList.remove('on')});var n=document.querySelector('.ob-step[data-s="'+obStep+'"]');if(n)n.classList.add('on')}
 function obDone(){var n=document.getElementById('inpName').value.trim();if(!n){document.getElementById('inpName').style.borderColor='#ef4444';return}D.name=n;D.ob=true;sv(D);showApp()}
 function showApp(){document.getElementById('onb').classList.remove('on');document.getElementById('home').classList.add('on');document.getElementById('nav').style.display='flex';document.getElementById('sosBtn').style.display='flex';initHome()}
 function go(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on')});document.querySelector('.ni[data-s="'+id+'"]').classList.add('on');({home:initHome,journey:initJourney,progress:initProgress,learn:initLearn,exercise:initExercise})[id]()}
-
-function getDaysIn(){if(!D.start)return-1;var s=new Date(D.start+'T00:00:00'),now=new Date();return Math.floor((now-s)/864e5)}
+function getDaysIn(){if(!D.start)return-1;return Math.floor((new Date()-new Date(D.start+'T00:00:00'))/864e5)}
 
 // === HOME ===
-function initHome(){var h=new Date().getHours();document.getElementById('greet').textContent=h<12?'Buenos dias':h<18?'Buenas tardes':'Buenas noches';document.getElementById('hName').textContent=D.name;updateTimer();updateQuote();checkUnlocks();renderDailyContent();renderRituals();renderHealth();updateLearnBadge()}
-
-function updateTimer(){if(!D.start)return;var s=new Date(D.start+'T00:00:00'),now=new Date(),diff=now-s;if(diff<0){var du=Math.ceil(Math.abs(diff)/864e5);document.getElementById('tDays').textContent=du;document.getElementById('tLbl').textContent='dias para empezar';document.getElementById('tSub').textContent='Preparate';document.getElementById('tProg').setAttribute('stroke-dashoffset','565');return}var days=Math.floor(diff/864e5),hrs=Math.floor((diff%864e5)/36e5),mins=Math.floor((diff%36e5)/6e4);document.getElementById('tDays').textContent=days;document.getElementById('tLbl').textContent=days===1?'dia libre':'dias libres';document.getElementById('tSub').textContent=hrs+'h '+mins+'m';var prog=Math.min(days/90,1);document.getElementById('tProg').setAttribute('stroke-dashoffset',565-(565*prog))}
+function initHome(){var h=new Date().getHours();document.getElementById('greet').textContent=h<12?'Buenos dias':h<18?'Buenas tardes':'Buenas noches';document.getElementById('hName').textContent=D.name;updateTimer();updateQuote();checkUnlocks();renderDailyContent();renderRituals();renderHealth();updateBadge()}
+function updateTimer(){if(!D.start)return;var s=new Date(D.start+'T00:00:00'),now=new Date(),diff=now-s;if(diff<0){var du=Math.ceil(Math.abs(diff)/864e5);document.getElementById('tDays').textContent=du;document.getElementById('tLbl').textContent='dias para empezar';document.getElementById('tSub').textContent='Preparate';document.getElementById('tProg').setAttribute('stroke-dashoffset','565');return}var days=Math.floor(diff/864e5),hrs=Math.floor((diff%864e5)/36e5),mins=Math.floor((diff%36e5)/6e4);document.getElementById('tDays').textContent=days;document.getElementById('tLbl').textContent=days===1?'dia libre':'dias libres';document.getElementById('tSub').textContent=hrs+'h '+mins+'m';document.getElementById('tProg').setAttribute('stroke-dashoffset',565-(565*Math.min(days/90,1)))}
 function updateQuote(){var doy=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/864e5);var q=QUOTES[doy%QUOTES.length];document.getElementById('dQuote').innerHTML='<p class="quote-t">"'+q.t+'"</p><p class="quote-a">\u2014 '+q.a+'</p>'}
 
-// === DAILY DRIP CONTENT ===
-function renderDailyContent(){var days=getDaysIn();if(days<0){document.getElementById('dailyContent').innerHTML='';return}
-var today=DAILY.filter(function(d){return d.day===days});
-var unseen=DAILY.filter(function(d){return d.day<=days&&!D.seenDaily.includes(d.day)&&d.day!==days});
-var items=today.concat(unseen).slice(0,2);
-if(items.length===0){document.getElementById('dailyContent').innerHTML='';return}
-document.getElementById('dailyContent').innerHTML=items.map(function(item){var isNew=!D.seenDaily.includes(item.day);return'<div class="daily-card" onclick="openDaily('+item.day+')">'+(isNew?'<span class="tag-new">HOY</span>':'')+'<div class="dc-emoji">'+item.emoji+'</div><div class="dc-cat">'+item.cat+'</div><div class="dc-title">'+item.title+'</div><div class="dc-prev">'+item.prev+'</div></div>'}).join('')}
+// === DAILY DRIP ===
+function renderDailyContent(){var days=getDaysIn();if(days<0){document.getElementById('dailyContent').innerHTML='';return}var items=DAILY.filter(function(d){return d.day<=days&&!D.seenDaily.includes(d.day)}).slice(0,2);if(!items.length){document.getElementById('dailyContent').innerHTML='';return}document.getElementById('dailyContent').innerHTML=items.map(function(item){return'<div class="daily-card" onclick="openDaily('+item.day+')"><span class="tag-new">NUEVO</span><div class="dc-emoji">'+item.emoji+'</div><div class="dc-cat">'+item.cat+'</div><div class="dc-title">'+item.title+'</div><div class="dc-prev">'+item.prev+'</div></div>'}).join('')}
+function openDaily(day){var item=DAILY.find(function(d){return d.day===day});if(!item)return;if(!D.seenDaily.includes(day)){D.seenDaily.push(day);sv(D)}document.getElementById('rdBody').innerHTML='<div style="text-align:center;margin-bottom:16px"><div style="font-size:2.5rem;margin-bottom:8px">'+item.emoji+'</div><div class="lbl" style="color:var(--cyan);margin-bottom:6px">'+item.cat+'</div><h2 class="hlg">'+item.title+'</h2></div>'+item.body+'<div class="divider"></div><button class="btn btn-p" onclick="closeRd()">Continuar</button>';document.getElementById('rdModal').classList.add('open');if(item.type==='milestone')setTimeout(confetti,300);renderDailyContent();updateBadge()}
 
-function openDaily(day){var item=DAILY.find(function(d){return d.day===day});if(!item)return;if(!D.seenDaily.includes(day)){D.seenDaily.push(day);sv(D)}document.getElementById('rdBody').innerHTML='<div style="text-align:center;margin-bottom:16px"><div style="font-size:2.5rem;margin-bottom:8px">'+item.emoji+'</div><div class="lbl" style="color:var(--cyan);margin-bottom:6px">'+item.cat+(item.type==='milestone'?' \u{1F389}':'')+'</div><h2 class="hlg">'+item.title+'</h2></div>'+item.body+'<div class="divider"></div><button class="btn btn-p" onclick="closeRd()">Continuar</button>';document.getElementById('rdModal').classList.add('open');if(item.type==='milestone')setTimeout(confetti,300)}
-
-// === UNLOCK ===
-function checkUnlocks(){if(!D.start)return;for(var i=1;i<RITUALS.length;i++){var r=RITUALS[i];if(!D.unlocked.includes(r.id)){var prev=RITUALS[i-1];var c=0;for(var k in D.rituals){if(D.rituals[k].includes(prev.id))c++}}}}
+// === UNLOCK with CEREMONY ===
+function checkUnlocks(){if(!D.start)return;for(var i=1;i<RITUALS.length;i++){if(!D.unlocked.includes(RITUALS[i].id)){var prev=RITUALS[i-1];var c=0;for(var k in D.rituals){if(D.rituals[k].includes(prev.id))c++}}}}
 function canUnlockNext(){var idx=-1;for(var i=0;i<RITUALS.length;i++){if(!D.unlocked.includes(RITUALS[i].id)){idx=i;break}}if(idx<=0)return false;var prev=RITUALS[idx-1];var c=0;for(var k in D.rituals){if(D.rituals[k].includes(prev.id))c++}return c>=prev.dtu}
 
 function renderRituals(){var today=new Date().toISOString().split('T')[0];var todayDone=D.rituals[today]||[];var ul=D.unlocked;var nextIdx=-1;for(var i=0;i<RITUALS.length;i++){if(!ul.includes(RITUALS[i].id)){nextIdx=i;break}}var showUC=nextIdx>0&&canUnlockNext();var html='';
-if(showUC){var nr=RITUALS[nextIdx];html+='<div class="unlock-card" onclick="showRI(\''+nr.id+'\')"><div style="font-size:2.5rem;margin-bottom:12px">\u{1F331}</div><div class="hmd">Nuevo ritual disponible</div><p class="body" style="margin-top:4px">Toca para desbloquear: '+nr.name+'</p><span class="tag-new">NUEVO</span></div>'}
+if(showUC){var nr=RITUALS[nextIdx];html+='<div class="unlock-card" onclick="startUnlockCeremony(\''+nr.id+'\')"><div style="font-size:2.5rem;margin-bottom:12px">\u{1F331}</div><div class="hmd">Nuevo ritual disponible</div><p class="body" style="margin-top:4px">'+nr.name+'</p><span class="tag-new">DESBLOQUEAR</span></div>'}
 RITUALS.forEach(function(r){var isUL=ul.includes(r.id);var isDone=todayDone.includes(r.id);if(!isUL){html+='<div class="ritual-item locked-ritual"><div class="r-chk"></div><div class="r-info"><div class="r-name">'+r.name+' \u{1F512}</div><div class="r-time">Completa rituales anteriores</div></div><div class="r-emo">'+r.emoji+'</div></div>'}else{html+='<div class="ritual-item '+(isDone?'done':'')+'" onclick="toggleR(\''+r.id+'\')"><div class="r-chk">'+(isDone?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>':'')+'</div><div class="r-info"><div class="r-name">'+r.name+'</div><div class="r-time">'+r.time+'</div></div><div class="r-emo">'+r.emoji+'</div></div>'}});
 document.getElementById('rList').innerHTML=html;var uc=RITUALS.filter(function(r){return ul.includes(r.id)}).length;var dc=todayDone.filter(function(id){return ul.includes(id)}).length;document.getElementById('rProg').textContent=dc+'/'+uc;if(dc===uc&&uc>0&&!D._ct){D._ct=true;setTimeout(confetti,300)}}
 
-function showRI(id){var r=RITUALS.find(function(x){return x.id===id});if(!r)return;document.getElementById('riBody').innerHTML='<div style="text-align:center;margin-bottom:20px"><div style="font-size:3rem;margin-bottom:12px">'+r.emoji+'</div><div class="lbl" style="color:var(--pri-l);margin-bottom:8px">NUEVO RITUAL</div><h2 class="hlg">'+r.introTitle+'</h2></div>'+r.introBody+'<div class="divider"></div><button class="btn btn-p" onclick="unlockR(\''+id+'\')">Desbloquear este ritual</button>';document.getElementById('riModal').classList.add('open')}
-function unlockR(id){if(!D.unlocked.includes(id)){D.unlocked.push(id);sv(D)}closeRi();renderRituals();confetti()}
-function closeRi(){document.getElementById('riModal').classList.remove('open')}
-function toggleR(id){var today=new Date().toISOString().split('T')[0];if(!D.rituals[today])D.rituals[today]=[];var idx=D.rituals[today].indexOf(id);if(idx>-1)D.rituals[today].splice(idx,1);else D.rituals[today].push(id);sv(D);renderRituals()}
+function startUnlockCeremony(id){
+  var r=RITUALS.find(function(x){return x.id===id});if(!r)return;
+  pendingUnlockId=id;
+  document.getElementById('unlockEmoji').textContent=r.emoji;
+  document.getElementById('unlockTitle').textContent=r.introTitle;
+  document.getElementById('unlockSub').innerHTML=r.introSub+'<br><br>'+r.introBody;
+  document.getElementById('unlockCeremony').classList.add('open');
+  playUnlockSound();confetti();
+}
+function acceptRitualUnlock(){
+  if(pendingUnlockId&&!D.unlocked.includes(pendingUnlockId)){D.unlocked.push(pendingUnlockId);sv(D)}
+  document.getElementById('unlockCeremony').classList.remove('open');
+  pendingUnlockId=null;renderRituals();
+}
 
-// === HEALTH ===
-function renderHealth(){var c=document.getElementById('hCards');if(!D.start){c.innerHTML='';return}var s=new Date(D.start+'T00:00:00'),now=new Date(),hrs=Math.max(0,(now-s)/36e5);c.innerHTML=HEALTH.map(function(m){var p=Math.min((hrs/m.hours)*100,100);var ach=p>=100;return'<div class="h-card"'+(ach?' style="border-color:rgba(52,211,153,.25)"':'')+'><div class="h-icon" style="background:'+m.bg+'">'+m.icon+'</div><div class="h-title">'+m.title+'</div><div class="h-desc">'+m.desc+'</div><div class="h-bar"><div class="h-fill" style="width:'+p+'%;background:'+(ach?'var(--green)':m.color)+'"></div></div><div class="h-meta"><span>'+(ach?'\u2713 Logrado':m.time)+'</span><span>'+Math.round(p)+'%</span></div></div>'}).join('')}
+function toggleR(id){var today=new Date().toISOString().split('T')[0];if(!D.rituals[today])D.rituals[today]=[];var idx=D.rituals[today].indexOf(id);if(idx>-1)D.rituals[today].splice(idx,1);else{D.rituals[today].push(id);playCheckSound()}sv(D);renderRituals()}
 
-// === LEARN (progressive) ===
-function updateLearnBadge(){var days=getDaysIn();var unread=DAILY.filter(function(d){return d.day<=days&&!D.seenDaily.includes(d.day)});var badge=document.querySelector('.ni[data-s="learn"] .ni-badge');if(unread.length>0){if(!badge){badge=document.createElement('div');badge.className='ni-badge';document.querySelector('.ni[data-s="learn"]').appendChild(badge)}}else{if(badge)badge.remove()}}
+// === HEALTH (now clickable with detail) ===
+function renderHealth(){var c=document.getElementById('hCards');if(!D.start){c.innerHTML='';return}var s=new Date(D.start+'T00:00:00'),now=new Date(),hrs=Math.max(0,(now-s)/36e5);c.innerHTML=HEALTH.map(function(m,i){var p=Math.min((hrs/m.hours)*100,100);var ach=p>=100;return'<div class="h-card" onclick="openHealthDetail('+i+')"'+(ach?' style="border-color:rgba(52,211,153,.25)"':'')+'><div class="h-icon" style="background:'+m.bg+'">'+m.icon+'</div><div class="h-title">'+m.title+'</div><div class="h-desc">'+m.desc+'</div><div class="h-bar"><div class="h-fill" style="width:'+p+'%;background:'+(ach?'var(--green)':m.color)+'"></div></div><div class="h-meta"><span>'+(ach?'\u2713 Logrado':m.time)+'</span><span>'+Math.round(p)+'%</span></div></div>'}).join('')}
 
+function openHealthDetail(i){var m=HEALTH[i];if(!D.start)return;var hrs=Math.max(0,(new Date()-new Date(D.start+'T00:00:00'))/36e5);var p=Math.min((hrs/m.hours)*100,100);var ach=p>=100;document.getElementById('rdBody').innerHTML='<div style="text-align:center;margin-bottom:16px"><div style="font-size:2.5rem;margin-bottom:8px">'+m.icon+'</div><div class="lbl" style="color:'+(ach?'var(--green)':m.color)+';margin-bottom:6px">'+(ach?'LOGRADO':'EN PROGRESO - '+Math.round(p)+'%')+'</div><h2 class="hlg">'+m.title+'</h2><p class="body" style="margin-top:4px">'+m.time+'</p></div><div class="divider"></div>'+m.detail+'<div class="divider"></div><button class="btn btn-p" onclick="closeRd()">Entendido</button>';document.getElementById('rdModal').classList.add('open')}
+
+// === RELAPSE ===
+function showRelapse(){document.getElementById('relModal').classList.add('open')}
+function closeRel(){document.getElementById('relModal').classList.remove('open')}
+function doRelapse(){D.relapses=(D.relapses||0)+1;D.totalDaysEver=(D.totalDaysEver||0)+getDaysIn();D.start=new Date().toISOString().split('T')[0];sv(D);closeRel();initHome()}
+
+// === LEARN ===
+function updateBadge(){var days=getDaysIn();var unread=DAILY.filter(function(d){return d.day<=days&&!D.seenDaily.includes(d.day)});var el=document.querySelector('.ni[data-s="learn"]');var badge=el.querySelector('.ni-badge');if(unread.length>0){if(!badge){badge=document.createElement('div');badge.className='ni-badge';el.appendChild(badge)}}else{if(badge)badge.remove()}}
 function initLearn(){var days=getDaysIn();document.getElementById('rdList').innerHTML=DAILY.map(function(item){var unlocked=item.day<=days;var read=D.seenDaily.includes(item.day);return'<div class="rd-card'+(unlocked?'':' locked')+'" onclick="'+(unlocked?'openDaily('+item.day+')':'')+'"><div class="rd-cat">'+item.cat+(unlocked?'':' \u{1F512}')+'</div><div class="rd-title">'+item.title+'</div><div class="rd-prev">'+(unlocked?item.prev:'Se desbloquea el dia '+item.day)+'</div><div class="rd-meta">'+(unlocked?(read?'<span style="color:var(--green)">\u2713 Leido</span>':'<span class="tag-new">Nuevo</span>'):'<span class="tag-day">DIA '+item.day+'</span>')+'</div></div>'}).join('')}
 
 // === SOS ===
 var sosInt=null,sosTime=900;
 function openSos(){document.getElementById('sosModal').classList.add('open');sosTime=900;document.getElementById('sosTimer').textContent='15:00';document.getElementById('sosStartBtn').textContent='Iniciar cuenta regresiva';document.getElementById('sosAA').innerHTML=''}
 function closeSos(){document.getElementById('sosModal').classList.remove('open');if(sosInt)clearInterval(sosInt);sosInt=null}
-function startSosTimer(){if(sosInt){clearInterval(sosInt);sosInt=null;document.getElementById('sosStartBtn').textContent='Reanudar';return}document.getElementById('sosStartBtn').textContent='Pausar';sosInt=setInterval(function(){sosTime--;if(sosTime<=0){clearInterval(sosInt);sosInt=null;document.getElementById('sosTimer').textContent='Lo lograste!';document.getElementById('sosStartBtn').textContent='Superaste el antojo';confetti();return}var m=Math.floor(sosTime/60),s=sosTime%60;document.getElementById('sosTimer').textContent=m+':'+String(s).padStart(2,'0')},1000)}
-function showSA(t){var area=document.getElementById('sosAA');var msgs={sq:'<div class="card"><p class="body">Hazlas ahora! 10 sentadillas. Rompe el patron mental.</p></div>',cold:'<div class="card"><p class="body">Agua fria en la cara 30 segundos. Activa reflejo de inmersion: baja frecuencia cardiaca.</p></div>',call:'<div class="card"><p class="body">Llama a alguien. "Hola, como estas?" es suficiente. Conexion = oxitocina.</p></div>',write:'<div class="card"><p class="body">Escribe sin censura ni juicio.</p><textarea style="width:100%;height:120px;margin-top:12px;padding:14px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rs);color:var(--t);font-family:var(--sn);font-size:.9rem;outline:none;resize:none" placeholder="Escribe aqui..."></textarea></div>'};area.innerHTML=msgs[t]||''}
+function startSosTimer(){if(sosInt){clearInterval(sosInt);sosInt=null;document.getElementById('sosStartBtn').textContent='Reanudar';return}document.getElementById('sosStartBtn').textContent='Pausar';sosInt=setInterval(function(){sosTime--;if(sosTime<=0){clearInterval(sosInt);sosInt=null;document.getElementById('sosTimer').textContent='Lo lograste!';confetti();return}document.getElementById('sosTimer').textContent=Math.floor(sosTime/60)+':'+String(sosTime%60).padStart(2,'0')},1000)}
+function showSA(t){document.getElementById('sosAA').innerHTML={sq:'<div class="card"><p class="body">10 sentadillas AHORA. Rompe el patron.</p></div>',cold:'<div class="card"><p class="body">Agua fria en la cara 30 seg. Activa reflejo de inmersion.</p></div>',call:'<div class="card"><p class="body">Llama a alguien. "Hola, como estas?" es suficiente.</p></div>',write:'<div class="card"><p class="body">Escribe sin censura.</p><textarea style="width:100%;height:120px;margin-top:12px;padding:14px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rs);color:var(--t);font-family:var(--sn);font-size:.9rem;outline:none;resize:none" placeholder="Escribe aqui..."></textarea></div>'}[t]||''}
 
 // === BREATHING ===
 var brInt=null,brCyc=0;
@@ -445,24 +462,43 @@ function closeBr(){document.getElementById('brModal').classList.remove('open');i
 function resetBr(){brCyc=0;document.getElementById('brCircle').className='br-circle';document.getElementById('brInst').textContent='Toca iniciar';document.getElementById('brTimer').textContent='';document.getElementById('brBtn').textContent='Iniciar'}
 function startBr(){if(brInt){clearInterval(brInt);resetBr();return}document.getElementById('brBtn').textContent='Detener';brCyc=0;runBr()}
 function runBr(){if(brCyc>=4){clearInterval(brInt);document.getElementById('brInst').textContent='Completo!';document.getElementById('brCircle').className='br-circle';document.getElementById('brBtn').textContent='Repetir';brInt=null;return}var ph=0,cnt=4;var c=document.getElementById('brCircle'),inst=document.getElementById('brInst'),tm=document.getElementById('brTimer');c.className='br-circle inhale';inst.textContent='Inhala';tm.textContent=cnt;brInt=setInterval(function(){cnt--;if(cnt<=0){ph++;if(ph===1){cnt=7;c.className='br-circle hold';inst.textContent='Sosten'}else if(ph===2){cnt=8;c.className='br-circle exhale';inst.textContent='Exhala'}else{brCyc++;clearInterval(brInt);setTimeout(runBr,400);return}}tm.textContent=cnt},1000)}
-
 function closeRd(){document.getElementById('rdModal').classList.remove('open')}
 
 // === JOURNEY ===
-function initJourney(){if(!D.start){document.getElementById('jPath').innerHTML='<p class="body" style="text-align:center;padding:30px">Configura tu fecha</p>';return}var s=new Date(D.start+'T00:00:00'),now=new Date(),wks=Math.max(0,(now-s)/(864e5*7));document.getElementById('jPath').innerHTML='<div class="j-line"></div>'+JOURNEY.map(function(j,i){var ws=[0,0,1,3,5,7][i]||0;var we=[0,2,4,6,8,12][i]||12;var st='lock';if(wks>=we)st='done';else if(wks>=ws)st='now';return'<div class="j-node '+st+'" style="animation-delay:'+i*.1+'s"><div class="j-dot"></div><div class="j-card"><div class="j-wk">'+j.wk+'</div><div class="j-title">'+j.title+'</div><div class="j-desc">'+j.desc+'</div></div></div>'}).join('')}
+function initJourney(){if(!D.start){document.getElementById('jPath').innerHTML='<p class="body" style="text-align:center;padding:30px">Configura tu fecha</p>';return}var wks=Math.max(0,(new Date()-new Date(D.start+'T00:00:00'))/(864e5*7));document.getElementById('jPath').innerHTML='<div class="j-line"></div>'+JOURNEY.map(function(j,i){var ws=[0,0,1,3,5,7][i],we=[0,2,4,6,8,12][i];var st=wks>=we?'done':wks>=ws?'now':'lock';return'<div class="j-node '+st+'" style="animation-delay:'+i*.1+'s"><div class="j-dot"></div><div class="j-card"><div class="j-wk">'+j.wk+'</div><div class="j-title">'+j.title+'</div><div class="j-desc">'+j.desc+'</div></div></div>'}).join('')}
 
 // === PROGRESS ===
-function initProgress(){if(!D.start)return;var s=new Date(D.start+'T00:00:00'),now=new Date(),diff=Math.max(0,now-s),days=Math.floor(diff/864e5);document.getElementById('sDays').textContent=days;var streak=0,td=new Date();for(var i=0;i<365;i++){var d=new Date(td);d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];if(D.rituals[k]&&D.rituals[k].length>0)streak++;else if(i>0)break}document.getElementById('sStrk').textContent=streak;var tr=0;for(var key in D.rituals){tr+=D.rituals[key].length}document.getElementById('sRit').textContent=tr;document.getElementById('sSav').textContent='$'+Math.round(days*50);renderCal();renderRecovery()}
-function renderCal(){var now=new Date(),y=now.getFullYear(),m=now.getMonth();var mn=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];document.getElementById('calMo').textContent=mn[m];var fd=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),td=now.getDate();var h=['Do','Lu','Ma','Mi','Ju','Vi','Sa'].map(function(d){return'<div class="cal-dl">'+d+'</div>'}).join('');for(var i=0;i<fd;i++)h+='<div class="cal-d e"></div>';for(var d=1;d<=dim;d++){var ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');var has=D.rituals[ds]&&D.rituals[ds].length>0;h+='<div class="cal-d '+(has?'f':'')+' '+(d===td?'today':'')+'">'+d+'</div>'}document.getElementById('calG').innerHTML=h}
-function renderRecovery(){if(!D.start)return;var s=new Date(D.start+'T00:00:00'),now=new Date(),hrs=Math.max(0,(now-s)/36e5);document.getElementById('recTL').innerHTML=HEALTH.map(function(m,i){var p=Math.min((hrs/m.hours)*100,100),ach=p>=100;return'<div class="rec-item '+(ach?'ach':'')+'"><div class="rec-icon" style="background:'+m.bg+'">'+m.icon+'</div><div class="rec-info"><div class="rec-title">'+(ach?'\u2713 ':'')+m.title+'</div><div class="rec-time">'+m.time+'</div><div class="rec-desc">'+m.desc+'</div><div class="rec-bar"><div class="rec-fill" style="width:'+p+'%;background:'+(ach?'var(--green)':m.color)+'"></div></div></div></div>'}).join('')}
+function initProgress(){if(!D.start)return;var days=getDaysIn();document.getElementById('sDays').textContent=days;var streak=0,td=new Date();for(var i=0;i<365;i++){var d=new Date(td);d.setDate(d.getDate()-i);var k=d.toISOString().split('T')[0];if(D.rituals[k]&&D.rituals[k].length>0)streak++;else if(i>0)break}document.getElementById('sStrk').textContent=streak;var tr=0;for(var key in D.rituals)tr+=D.rituals[key].length;document.getElementById('sRit').textContent=tr;document.getElementById('sSav').textContent='$'+Math.round(days*50);renderCal();renderRecovery()}
+function renderCal(){var now=new Date(),y=now.getFullYear(),m=now.getMonth();document.getElementById('calMo').textContent=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][m];var fd=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),td=now.getDate();var h=['Do','Lu','Ma','Mi','Ju','Vi','Sa'].map(function(d){return'<div class="cal-dl">'+d+'</div>'}).join('');for(var i=0;i<fd;i++)h+='<div class="cal-d e"></div>';for(var d=1;d<=dim;d++){var ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');h+='<div class="cal-d '+(D.rituals[ds]&&D.rituals[ds].length>0?'f':'')+' '+(d===td?'today':'')+'">'+d+'</div>'}document.getElementById('calG').innerHTML=h}
+function renderRecovery(){if(!D.start)return;var hrs=Math.max(0,(new Date()-new Date(D.start+'T00:00:00'))/36e5);document.getElementById('recTL').innerHTML=HEALTH.map(function(m,i){var p=Math.min((hrs/m.hours)*100,100),ach=p>=100;return'<div class="rec-item '+(ach?'ach':'')+'" onclick="openHealthDetail('+i+')"><div class="rec-icon" style="background:'+m.bg+'">'+m.icon+'</div><div class="rec-info"><div class="rec-title">'+(ach?'\u2713 ':'')+m.title+'</div><div class="rec-time">'+m.time+'</div><div class="rec-desc">'+m.desc+'</div><div class="rec-bar"><div class="rec-fill" style="width:'+p+'%;background:'+(ach?'var(--green)':m.color)+'"></div></div></div></div>'}).join('')}
 
 // === EXERCISE ===
 function initExercise(){document.getElementById('exList').innerHTML=EXER.map(function(e,i){return'<div class="ex-card" id="ex'+i+'" onclick="document.getElementById(\'ex'+i+'\').classList.toggle(\'exp\')"><div class="ex-head"><div class="ex-ico" style="background:'+e.col+'">'+e.icon+'</div><div><div class="ex-name">'+e.name+'</div><div class="ex-tgt">'+e.tgt+'</div></div></div><div class="ex-det"><p>'+e.det+'</p><div class="ex-sets">'+e.sets+'</div></div></div>'}).join('')}
 
 function confetti(){var cols=['#a594f9','#f472b6','#3ecfcf','#34d399','#fbbf24','#cec3ff'];for(var i=0;i<35;i++){var p=document.createElement('div');p.className='confetti';p.style.cssText='left:'+Math.random()*100+'vw;width:'+(Math.random()*7+3)+'px;height:'+(Math.random()*7+3)+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';animation:confFall '+(Math.random()*2+1.5)+'s ease-out forwards;animation-delay:'+Math.random()*.4+'s';document.body.appendChild(p);setTimeout((function(el){return function(){el.remove()}})(p),3500)}}
 
+// NOTIFICATIONS
+function setupNotifications(){
+  if(!('Notification' in window))return;
+  if(Notification.permission==='default')Notification.requestPermission();
+  // Schedule daily check
+  setInterval(function(){
+    if(Notification.permission!=='granted')return;
+    var h=new Date().getHours(),m=new Date().getMinutes();
+    // Morning reminder 7:00
+    if(h===7&&m===0){new Notification('Bloom',{body:'Buenos dias! Tu vaso de agua te espera. Hoy es un buen dia para ser libre.',icon:'icon-192.png'})}
+    // Evening 21:00
+    if(h===21&&m===0){new Notification('Bloom',{body:'Completaste tus rituales de hoy? Recuerda tus 3 agradecimientos.',icon:'icon-192.png'})}
+  },60000);
+}
+
 setInterval(function(){if(document.getElementById('home').classList.contains('on'))updateTimer()},6e4);
-window.addEventListener('DOMContentLoaded',function(){document.getElementById('inpDate').value=new Date().toISOString().split('T')[0];if(D.ob)showApp()});
+window.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('inpDate').value=new Date().toISOString().split('T')[0];
+  // FIX: properly check if onboarding is done
+  if(D.ob===true&&D.name&&D.start){showApp()}
+  setupNotifications();
+});
 </script>
 </body>
 </html>
